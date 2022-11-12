@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-footer-bar',
   templateUrl: './footer-bar.component.html',
-  styleUrls: ['./footer-bar.component.css']
+  styleUrls: ['./footer-bar.component.css', '../../styles.css']
 })
 export class FooterBarComponent implements OnInit {
 
