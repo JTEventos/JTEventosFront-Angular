@@ -27,7 +27,7 @@ function search(text: string): User[] {
 		return (
 			user.name.toLowerCase().includes(term) ||
 			user.username.toLowerCase().includes(term) ||
-			user.role.toLocaleLowerCase().includes(term)
+			user.role.toLowerCase().includes(term)
 		);
 	});
 }

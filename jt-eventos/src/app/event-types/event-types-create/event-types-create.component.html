@@ -1,1 +1,53 @@
-<p>event-types-create works!</p>
+<div class="row">
+    <form>
+        <div class="btn-toolbar" role="toolbar">
+            <div class="btn-group me-2" role="group">
+                <button type="submit" class="btn btn-outline-success">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="btn-group me-2" role="group">
+                <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-dark a-dark">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                    </svg>
+                </a>
+            </div>
+
+            <h1 class="position-absolute start-50 translate-middle-x">{{ title }}</h1>
+        </div>
+
+        <hr />
+
+        <div class="col-md-5 row g-1 mx-auto">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <strong><label for="Description" class="control-label">Descrição</label></strong>
+                <input id="Description" class="form-control" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Modal de cancelamento -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Deseja cancelar este cadastro?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Este cadastro não será salvo e você perderá as informações preenchidas.
+            </div>
+            <div class="modal-footer">
+                <a type="button" asp-action="Create" class="btn btn-outline-dark" data-bs-dismiss="modal">Voltar</a>
+                <a type="button" asp-action="Index" class="btn btn-outline-primary">Cancelar cadastro</a>
+            </div>
+        </div>
+    </div>
+</div>

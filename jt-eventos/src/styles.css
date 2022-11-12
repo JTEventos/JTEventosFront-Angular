@@ -44,12 +44,22 @@ a:hover {
   color: #125699;
 }
 
-.a-black, .a-black:visited {
+.a-dark, .a-dark:visited, .a-table, .a-table:visited, .a-table:hover {
   color: #000;
-  
+  text-decoration: none;
 }
 
-.a-black:hover {
+.a-success:hover, .a-dark:hover, .a-danger:hover {
   color: #fff;
+  text-decoration: none;
+}
+
+.a-success, .a-success:visited {
+  color: rgb(29, 123, 77);
+  text-decoration: none;
+}
+
+.a-danger, .a-danger:visited {
+  color: rgb(213, 45, 62);
   text-decoration: none;
 }
