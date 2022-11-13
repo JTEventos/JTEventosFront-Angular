@@ -90,3 +90,20 @@ a, a:visited, a:hover {
 .custom-day.faded {
   background-color: #0275d880;
 }
+
+/* Rodapé */
+
+footer {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  line-height: 20px;
+}
+
+footer a {
+  align-items: center;
+}
+
+.container {
+  padding-bottom: 75px;
+}
