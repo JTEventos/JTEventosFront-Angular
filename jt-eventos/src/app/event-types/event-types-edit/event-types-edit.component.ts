@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CancelModalComponent } from 'src/app/modals/cancel-modal/cancel-modal.component';
 
 @Component({
   selector: 'app-event-types-edit',
@@ -8,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 export class EventTypesEditComponent implements OnInit {
   title = "Edição de Tipo de Evento"
 
-  constructor() { }
+  constructor(private modalService: NgbModal) {}
+
+	open() {
+		this.modalService.open(CancelModalComponent);
+	}
 
   ngOnInit(): void {
   }

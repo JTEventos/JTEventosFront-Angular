@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CancelModalComponent } from 'src/app/modals/cancel-modal/cancel-modal.component';
 
 @Component({
   selector: 'app-establishments-edit',
@@ -8,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 export class EstablishmentsEditComponent implements OnInit {
   title = "Edição de Estabelecimento"
 
-  constructor() { }
+	constructor(private modalService: NgbModal) {}
+
+	open() {
+		this.modalService.open(CancelModalComponent);
+	}
 
   ngOnInit(): void {
   }

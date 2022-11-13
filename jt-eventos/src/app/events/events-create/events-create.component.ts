@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCalendar, NgbDate, NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CancelModalComponent } from 'src/app/modals/cancel-modal/cancel-modal.component';
 
 @Component({
 	selector: 'app-events-create',
@@ -13,9 +14,13 @@ export class EventsCreateComponent implements OnInit {
 	fromDate: NgbDate | null;
 	toDate: NgbDate | null;
 
-	constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
+	constructor(private modalService: NgbModal, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
 		this.fromDate = calendar.getToday();
 		this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+	}
+
+	open() {
+		this.modalService.open(CancelModalComponent);
 	}
 
 	onDateSelection(date: NgbDate) {

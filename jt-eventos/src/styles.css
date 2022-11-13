@@ -40,10 +40,6 @@ a, a:visited, a:hover {
   text-decoration: none;
 }
 
-a:hover {
-  color: #125699;
-}
-
 .a-dark, .a-dark:visited, .a-table, .a-table:visited, .a-table:hover {
   color: #000;
   text-decoration: none;
@@ -55,12 +51,12 @@ a:hover {
 }
 
 .a-success, .a-success:visited {
-  color: rgb(29, 123, 77);
+  color: #1d7b4d;
   text-decoration: none;
 }
 
 .a-danger, .a-danger:visited {
-  color: rgb(213, 45, 62);
+  color: #d52d3e;
   text-decoration: none;
 }
 
@@ -87,10 +83,10 @@ a:hover {
 
 .custom-day.range,
 .custom-day:hover {
-  background-color: rgb(2, 117, 216);
+  background-color: #0275d8;
   color: white;
 }
 
 .custom-day.faded {
-  background-color: rgba(2, 117, 216, 0.5);
+  background-color: #0275d880;
 }

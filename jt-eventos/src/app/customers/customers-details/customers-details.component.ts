@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DeleteModalComponent } from 'src/app/modals/delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-customers-details',
@@ -8,7 +10,12 @@ import { Component, OnInit } from '@angular/core';
 export class CustomersDetailsComponent implements OnInit {
   title = "Detalhes do Cliente"
 
-  constructor() { }
+	constructor(private modalService: NgbModal) {}
+
+	openDelete() {
+		const modalRef = this.modalService.open(DeleteModalComponent);
+		modalRef.componentInstance.description = 'cliente';
+	}
 
   ngOnInit(): void {
   }

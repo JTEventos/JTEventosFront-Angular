@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CancelModalComponent } from 'src/app/modals/cancel-modal/cancel-modal.component';
 
 @Component({
   selector: 'app-customers-create',
@@ -8,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 export class CustomersCreateComponent implements OnInit {
   title = "Cadastro de Cliente"
 
-  constructor() { }
+	constructor(private modalService: NgbModal) {}
+
+	open() {
+		this.modalService.open(CancelModalComponent);
+	}
 
   ngOnInit(): void {
   }
