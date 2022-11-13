@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users-edit.component.css', '../../../styles.css']
 })
 export class UsersEditComponent implements OnInit {
-  title = "Edição de usuário";
+  title = "Edição de Usuário";
 
   constructor() { }
 

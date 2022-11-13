@@ -19,6 +19,15 @@ import { CustomersCreateComponent } from './customers/customers-create/customers
 import { CustomersTableComponent } from './customers/customers-table/customers-table.component';
 import { CustomersDetailsComponent } from './customers/customers-details/customers-details.component';
 import { CustomersEditComponent } from './customers/customers-edit/customers-edit.component';
+import { EstablishmentsTableComponent } from './establishments/establishments-table/establishments-table.component';
+import { EstablishmentsCreateComponent } from './establishments/establishments-create/establishments-create.component';
+import { EstablishmentsDetailsComponent } from './establishments/establishments-details/establishments-details.component';
+import { EstablishmentsEditComponent } from './establishments/establishments-edit/establishments-edit.component';
+import { EventsTableComponent } from './events/events-table/events-table.component';
+import { EventsCreateComponent } from './events/events-create/events-create.component';
+import { EventsDetailsComponent } from './events/events-details/events-details.component';
+import { EventsEditComponent } from './events/events-edit/events-edit.component';
+import { EventsReportComponent } from './events/events-report/events-report.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +46,15 @@ import { CustomersEditComponent } from './customers/customers-edit/customers-edi
     CustomersTableComponent,
     CustomersDetailsComponent,
     CustomersEditComponent,
+    EstablishmentsTableComponent,
+    EstablishmentsCreateComponent,
+    EstablishmentsDetailsComponent,
+    EstablishmentsEditComponent,
+    EventsTableComponent,
+    EventsCreateComponent,
+    EventsDetailsComponent,
+    EventsEditComponent,
+    EventsReportComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +80,15 @@ import { CustomersEditComponent } from './customers/customers-edit/customers-edi
     CustomersTableComponent,
     CustomersDetailsComponent,
     CustomersEditComponent,
+    EstablishmentsTableComponent,
+    EstablishmentsCreateComponent,
+    EstablishmentsDetailsComponent,
+    EstablishmentsEditComponent,
+    EventsTableComponent,
+    EventsCreateComponent,
+    EventsDetailsComponent,
+    EventsEditComponent,
+    EventsReportComponent,
   ]
 })
 export class AppModule { }

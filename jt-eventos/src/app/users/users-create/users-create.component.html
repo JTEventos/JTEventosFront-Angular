@@ -25,6 +25,14 @@
         <div class="col-md-5 row g-1 mx-auto">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <strong><label for="Role" class="control-label">Tipo de usuário</label></strong>
+                <select id="Role" class="form-select">
+                    <option selected disabled>Selecione</option>
+                    <option itemid="ADMIN">Administrador</option>
+                    <option itemid="EMPLOYEE">Funcionário</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <strong><label for="Name" class="control-label">Nome</label></strong>
                 <input id="Name" class="form-control" />
             </div>
@@ -32,21 +40,13 @@
                 <strong><label for="Username" class="control-label">Usuário</label></strong>
                 <input id="Username" class="form-control" />
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <strong><label for="Password" class="control-label">Senha</label></strong>
                 <input id="Password" class="form-control" />
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <strong><label for="ConfirmPassword" class="control-label">Confirmar senha</label></strong>
                 <input id="ConfirmPassword" class="form-control" />
-            </div>
-            <div class="form-group">
-                <strong><label for="Role" class="control-label">Tipo de usuário</label></strong>
-                <select id="Role" class="form-select">
-                    <option selected disabled>Selecione</option>
-                    <option itemid="ADMIN">Administrador</option>
-                    <option itemid="EMPLOYEE">Funcionário</option>
-                </select>
             </div>
         </div>
     </form>

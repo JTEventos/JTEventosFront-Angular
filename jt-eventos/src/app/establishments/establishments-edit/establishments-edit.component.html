@@ -1,6 +1,5 @@
 <div class="row">
-
-    <form asp-action="Edit">
+    <form>
         <div class="btn-toolbar" role="toolbar">
             <div class="btn-group me-2" role="group">
                 <button type="submit" class="btn btn-outline-success">
@@ -26,28 +25,36 @@
         <div class="col-md-5 row g-1 mx-auto">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <strong><label for="Role" class="control-label">Tipo de usuário</label></strong>
-                <select id="Role" class="form-select">
-                    <option selected disabled>Selecione</option>
-                    <option itemid="ADMIN">Administrador</option>
-                    <option itemid="EMPLOYEE">Funcionário</option>
-                </select>
+                <strong><label for="Description" class="control-label">Descrição</label></strong>
+                <input id="Description" class="form-control" />
             </div>
             <div class="form-group">
-                <strong><label for="Name" class="control-label">Nome</label></strong>
-                <input id="Name" class="form-control" />
+                <strong><label for="Cep" class="control-label">CEP</label></strong>
+                <input id="Cep" class="form-control" />
             </div>
             <div class="form-group">
-                <strong><label for="Username" class="control-label">Usuário</label></strong>
-                <input id="Username" class="form-control" />
+                <strong><label for="Street" class="control-label">Logradouro</label></strong>
+                <input id="Street" class="form-control" readonly />
             </div>
             <div class="form-group col-md-6">
-                <strong><label for="Password" class="control-label">Senha</label></strong>
-                <input id="Password" class="form-control" />
+                <strong><label for="StreetNumber" class="control-label">Número</label></strong>
+                <input id="StreetNumber" class="form-control" />
             </div>
             <div class="form-group col-md-6">
-                <strong><label for="ConfirmPassword" class="control-label">Confirmar senha</label></strong>
-                <input id="ConfirmPassword" class="form-control" />
+                <strong><label for="StreetComplement" class="control-label">Complemento</label></strong>
+                <input id="StreetComplement" class="form-control" />
+            </div>
+            <div class="form-group">
+                <strong><label for="Neighborhood" class="control-label">Bairro</label></strong>
+                <input id="Neighborhood" class="form-control" readonly />
+            </div>
+            <div class="form-group col-md-9">
+                <strong><label for="City" class="control-label">Cidade</label></strong>
+                <input id="City" class="form-control" readonly />
+            </div>
+            <div class="form-group col-md-3">
+                <strong><label for="State" class="control-label">UF</label></strong>
+                <input id="State" class="form-control" readonly />
             </div>
         </div>
     </form>

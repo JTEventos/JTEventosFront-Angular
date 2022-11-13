@@ -1,0 +1,74 @@
+<div class="btn-toolbar" role="toolbar">
+    <div class="btn-group me-2" role="group">
+        <a asp-action="Index" class="btn btn-outline-dark a-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+            </svg>
+        </a>
+    </div>
+
+    <div class="btn-group me-2" role="group">
+        <a asp-action="Edit" class="btn btn-outline-dark a-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+            </svg>
+        </a>
+    </div>
+
+    <div class="btn-group me-2" role="group">
+        <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-danger a-danger">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+            </svg>
+        </a>
+    </div>
+
+    <h1 class="position-absolute start-50 translate-middle-x">{{ title }}</h1>
+</div>
+
+<hr />
+
+<div class="alert alert-danger alert-dismissible fade show col-md-5 row g-1 mx-auto" id="HidenAlert" role="alert">
+    Não foi possível excluir este estabelecimento, pois está vinculado em um evento.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="row">
+    <div class="col-md-5 g-1 mx-auto">
+        <div class="form-group">
+            <strong><label class="control-label">Descrição</label></strong>
+            <label readonly class="form-control"></label>
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            <strong><label class="control-label">Endereço</label></strong>
+            <textarea readonly class="form-control" rows="3" disabled></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de exclusão -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Deseja excluir este estabelecimento?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Recomendamos <strong>inativar</strong> o registro, para manter suas informações na base dados.
+            </div>
+            <div class="modal-footer">
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <a asp-action="Details" class="btn btn-outline-dark" data-bs-dismiss="modal">Voltar</a>
+                    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-outline-primary">Inativar</a>
+                    <button type="submit" class="btn btn-outline-danger" onclick="invalidDate();" data-bs-dismiss="modal">Excluir estabelecimento</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

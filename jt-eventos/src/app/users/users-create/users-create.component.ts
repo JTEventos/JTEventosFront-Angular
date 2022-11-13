@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users-create.component.css', '../../../styles.css']
 })
 export class UsersCreateComponent implements OnInit {
-  title = 'Cadastro de usuário';
+  title = 'Cadastro de Usuário';
 
   constructor() { }
 
