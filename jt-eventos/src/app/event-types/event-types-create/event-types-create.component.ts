@@ -8,15 +8,13 @@ import { CancelModalComponent } from 'src/app/modals/cancel-modal/cancel-modal.c
   styleUrls: ['./event-types-create.component.css', '../../../styles.css']
 })
 export class EventTypesCreateComponent implements OnInit {
-  title = "Cadastro de Tipo de Evento"
+  title = "Cadastro de tipo de evento"
 
   constructor(private modalService: NgbModal) {}
 
-	open() {
+	cancel() {
 		this.modalService.open(CancelModalComponent);
 	}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void { }
 }

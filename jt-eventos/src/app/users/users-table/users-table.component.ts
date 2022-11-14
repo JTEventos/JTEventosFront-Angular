@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { map, Observable, startWith } from 'rxjs';
+import { UsersCreateComponent } from '../users-create/users-create.component';
+import { UsersDetailsComponent } from '../users-details/users-details.component';
 
 interface User {
 	name: string;
@@ -33,23 +36,34 @@ function search(text: string): User[] {
 }
 
 @Component({
-  selector: 'app-users-table',
-  templateUrl: './users-table.component.html',
-  styleUrls: ['./users-table.component.css', '../../../styles.css']
+	selector: 'app-users-table',
+	templateUrl: './users-table.component.html',
+	styleUrls: ['./users-table.component.css', '../../../styles.css'],
+	providers: [NgbModalConfig, NgbModal]
 })
 export class UsersTableComponent implements OnInit {
-  title = "Usuários"
-  users$: Observable<User[]>;
-  filter = new FormControl('', { nonNullable: true });
+	title = "Usuários"
+	users$: Observable<User[]>;
+	filter = new FormControl('', { nonNullable: true });
 
-  constructor() {
-    this.users$ = this.filter.valueChanges.pipe(
-      startWith(''),
-      map((text) => search(text)),
-    );
-  }
+	constructor(config: NgbModalConfig, private modalService: NgbModal) {
+		// customize default values of modals used by this component tree
+		config.backdrop = 'static';
+		config.keyboard = false;
 
-  ngOnInit(): void {
-  }
+		this.users$ = this.filter.valueChanges.pipe(
+			startWith(''),
+			map((text) => search(text)),
+		);
+	}
 
+	createUser() {
+		this.modalService.open(UsersCreateComponent, { centered: true });
+	}
+
+	detailUser() {
+		this.modalService.open(UsersDetailsComponent, { centered: true });
+	}
+
+	ngOnInit(): void { }
 }

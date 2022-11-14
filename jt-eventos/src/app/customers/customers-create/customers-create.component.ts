@@ -8,15 +8,13 @@ import { CancelModalComponent } from 'src/app/modals/cancel-modal/cancel-modal.c
   styleUrls: ['./customers-create.component.css', '../../../styles.css']
 })
 export class CustomersCreateComponent implements OnInit {
-  title = "Cadastro de Cliente"
+  title = "Cadastro de cliente"
 
-	constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal) { }
 
-	open() {
-		this.modalService.open(CancelModalComponent);
-	}
-
-  ngOnInit(): void {
+  cancel() {
+    this.modalService.open(CancelModalComponent);
   }
 
+  ngOnInit(): void { }
 }

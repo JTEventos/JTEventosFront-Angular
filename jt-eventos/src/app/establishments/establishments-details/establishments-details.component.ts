@@ -1,23 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteModalComponent } from 'src/app/modals/delete-modal/delete-modal.component';
+import { EstablishmentsEditComponent } from '../establishments-edit/establishments-edit.component';
 
 @Component({
   selector: 'app-establishments-details',
   templateUrl: './establishments-details.component.html',
-  styleUrls: ['./establishments-details.component.css', '../../../styles.css']
+  styleUrls: ['./establishments-details.component.css', '../../../styles.css'],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class EstablishmentsDetailsComponent implements OnInit {
-  title = "Detalhes do Estabelecimento"
+  title = "Detalhes do estabelecimento"
 
-	constructor(private modalService: NgbModal) {}
-
-	openDelete() {
-		const modalRef = this.modalService.open(DeleteModalComponent);
-		modalRef.componentInstance.description = 'estabelecimento';
-	}
-
-  ngOnInit(): void {
+  constructor(config: NgbModalConfig, private modalService: NgbModal, public activeModal: NgbActiveModal) {
+    // customize default values of modals used by this component tree
+    config.backdrop = 'static';
+    config.keyboard = false;
   }
 
+  openDelete() {
+    const modalRef = this.modalService.open(DeleteModalComponent);
+    modalRef.componentInstance.description = 'estabelecimento';
+  }
+
+  editEstablishment() {
+    this.modalService.open(EstablishmentsEditComponent, { centered: true });
+  }
+
+  ngOnInit(): void { }
 }

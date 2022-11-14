@@ -8,7 +8,7 @@ import { CancelModalComponent } from 'src/app/modals/cancel-modal/cancel-modal.c
   styleUrls: ['./events-edit.component.css', '../../../styles.css']
 })
 export class EventsEditComponent implements OnInit {
-  title = "Edição de Evento"
+  title = "Edição de evento"
   hoveredDate: NgbDate | null = null;
 
   fromDate: NgbDate | null;
@@ -19,7 +19,7 @@ export class EventsEditComponent implements OnInit {
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
 
-  open() {
+  cancel() {
 		this.modalService.open(CancelModalComponent);
 	}
 

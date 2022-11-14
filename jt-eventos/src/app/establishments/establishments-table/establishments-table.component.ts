@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { map, Observable, startWith } from 'rxjs';
+import { EstablishmentsCreateComponent } from '../establishments-create/establishments-create.component';
+import { EstablishmentsDetailsComponent } from '../establishments-details/establishments-details.component';
 
 interface Establishment {
 	description: string;
@@ -55,21 +58,32 @@ function search(text: string): Establishment[] {
 @Component({
   selector: 'app-establishments-table',
   templateUrl: './establishments-table.component.html',
-  styleUrls: ['./establishments-table.component.css', '../../../styles.css']
+  styleUrls: ['./establishments-table.component.css', '../../../styles.css'],
+  providers: [NgbModalConfig, NgbModal],
 })
 export class EstablishmentsTableComponent implements OnInit {
   title = "Estabelecimentos"
   establishments$: Observable<Establishment[]>;
   filter = new FormControl('', { nonNullable: true });
 
-  constructor() {
+  constructor(config: NgbModalConfig, private modalService: NgbModal) {
+        // customize default values of modals used by this component tree
+        config.backdrop = 'static';
+        config.keyboard = false;
+
     this.establishments$ = this.filter.valueChanges.pipe(
       startWith(''),
       map((text) => search(text)),
     );
   }
 
-  ngOnInit(): void {
+  createEstablishment() {
+    this.modalService.open(EstablishmentsCreateComponent, { centered: true });
   }
 
+  detailEstablishment() {
+    this.modalService.open(EstablishmentsDetailsComponent, { centered: true });
+  }
+
+  ngOnInit(): void {}
 }

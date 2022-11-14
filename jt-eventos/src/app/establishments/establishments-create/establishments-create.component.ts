@@ -8,11 +8,11 @@ import { CancelModalComponent } from 'src/app/modals/cancel-modal/cancel-modal.c
   styleUrls: ['./establishments-create.component.css', '../../../styles.css']
 })
 export class EstablishmentsCreateComponent implements OnInit {
-  title = "Cadastro de Estabelecimento"
+  title = "Cadastro de estabelecimento"
 
 	constructor(private modalService: NgbModal) {}
 
-	open() {
+	cancel() {
 		this.modalService.open(CancelModalComponent);
 	}
 

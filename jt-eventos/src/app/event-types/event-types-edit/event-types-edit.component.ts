@@ -8,15 +8,13 @@ import { CancelModalComponent } from 'src/app/modals/cancel-modal/cancel-modal.c
   styleUrls: ['./event-types-edit.component.css', '../../../styles.css']
 })
 export class EventTypesEditComponent implements OnInit {
-  title = "Edição de Tipo de Evento"
+  title = "Edição de tipo de evento"
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal) { }
 
-	open() {
-		this.modalService.open(CancelModalComponent);
-	}
-
-  ngOnInit(): void {
+  cancel() {
+    this.modalService.open(CancelModalComponent);
   }
 
+  ngOnInit(): void { }
 }
