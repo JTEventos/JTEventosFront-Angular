@@ -27,10 +27,10 @@ import { EventsTableComponent } from './components/events/events-table/events-ta
 import { EventsCreateComponent } from './components/events/events-create/events-create.component';
 import { EventsDetailsComponent } from './components/events/events-details/events-details.component';
 import { EventsEditComponent } from './components/events/events-edit/events-edit.component';
-import { EventsReportComponent } from './components/events/events-report/events-report.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { CancelModalComponent } from './components/modals/cancel-modal/cancel-modal.component';
 import { DeleteModalComponent } from './components/modals/delete-modal/delete-modal.component';
+import { NgxPrintModule } from 'ngx-print';
 
 @NgModule({
   declarations: [
@@ -57,7 +57,6 @@ import { DeleteModalComponent } from './components/modals/delete-modal/delete-mo
     EventsCreateComponent,
     EventsDetailsComponent,
     EventsEditComponent,
-    EventsReportComponent,
     AuthenticationComponent,
     CancelModalComponent,
     DeleteModalComponent,
@@ -67,7 +66,8 @@ import { DeleteModalComponent } from './components/modals/delete-modal/delete-mo
     NgbModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPrintModule,
   ],
   providers: [],
   bootstrap: [
@@ -75,26 +75,10 @@ import { DeleteModalComponent } from './components/modals/delete-modal/delete-mo
     NavBarComponent,
     FooterComponent,
     UsersTableComponent,
-    // UsersCreateComponent,
-    // UsersDetailsComponent,
-    // UsersEditComponent,
     EventTypesTableComponent,
-    // EventTypesCreateComponent,
-    // EventTypesDetailsComponent,
-    // EventTypesEditComponent,
-    // CustomersCreateComponent,
     CustomersTableComponent,
-    // CustomersDetailsComponent,
-    // CustomersEditComponent,
     EstablishmentsTableComponent,
-    // EstablishmentsCreateComponent,
-    // EstablishmentsDetailsComponent,
-    // EstablishmentsEditComponent,
     EventsTableComponent,
-    // EventsCreateComponent,
-    // EventsDetailsComponent,
-    // EventsEditComponent,
-    // AuthenticationComponent,
   ]
 })
 export class AppModule { }

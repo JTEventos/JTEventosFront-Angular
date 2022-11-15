@@ -44,7 +44,7 @@
     </div>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-outline-dark" (click)="openWindow()">
+    <button class="btn btn-outline-dark" printTitle="JT Eventos" printSectionId="report" [useExistingCss]="true" ngxPrint>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
             <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
             <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z" />
@@ -137,3 +137,83 @@
         </div>
     </div>
 </div> -->
+
+
+
+<!-- Dados para impressão do relatório -->
+
+<div class="container-fluid" id="report">
+  <div class="row no-gutters">
+    <div class="col">
+      <img
+      src="../../../../assets/jt-eventos.png"
+      alt="Logotipo JT Eventos"
+      class="logotipo">
+    </div>
+  </div>
+
+  <div class="row no-gutters">
+    <div class="col">
+      <h1>{{ description }}</h1>
+    </div>
+  </div>
+
+  <div class="row no-gutters items-group">
+    <div class="col-3 label">
+      <p>Tipo de evento:</p>
+      <p>Data:</p>
+    </div>
+
+    <div class="col-9">
+      <p>Casamento</p>
+      <p>02/03/2023 à 03/03/2023</p>
+    </div>
+  </div>
+
+  <div class="row no-gutters items-group">
+    <div class="col-3 label">
+      <p>Cliente:</p>
+      <p>Contato:</p>
+      <p>Endereço:</p>
+    </div>
+
+    <div class="col-9">
+      <p>Jonas Pohlmann</p>
+      <p>5133333333 | 51999999999</p>
+      <p>Rua A, 123, Casa 2, Ingleses - Florianópolis/SC, CEP: 11000000</p>
+    </div>
+  </div>
+
+  <div class="row no-gutters items-group">
+    <div class="col-3 label">
+      <p>Espaço:</p>
+      <p>Endereço:</p>
+    </div>
+
+    <div class="col-9">
+      <p>Casa de Festas</p>
+      <p>Avenida B, 321, Segundo andar, Canasvieiras - Florianópolis/SC, CEP: 12000000</p>
+    </div>
+  </div>
+
+  <div class="row no-gutters items-group">
+    <div class="col">
+      <p class="label">Lista de convidados:</p>
+      <ul class="disclaimer">
+        <li>Thiago</li>
+        <li>Roberto</li>
+        <li>Bruna</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row no-gutters">
+    <div class="col">
+      <p class="disclaimer signature-field">
+        &copy; 2022 - JT Eventos&nbsp;
+        Jonas Pohlmann Araujo,&nbsp;
+        Thiago Martins Proença
+      </p>
+    </div>
+  </div>
+</div>
