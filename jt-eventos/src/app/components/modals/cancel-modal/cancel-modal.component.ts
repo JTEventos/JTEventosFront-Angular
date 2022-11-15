@@ -1,0 +1,13 @@
+import { Component } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalWindow } from '@ng-bootstrap/ng-bootstrap/modal/modal-window';
+import { CustomersCreateComponent } from 'src/app/components/customers/customers-create/customers-create.component';
+
+@Component({
+  selector: 'app-cancel-modal',
+  templateUrl: './cancel-modal.component.html',
+  styleUrls: ['./cancel-modal.component.css', '../../../../styles.css']
+})
+export class CancelModalComponent {
+	constructor(public activeModal: NgbActiveModal) {}
+}

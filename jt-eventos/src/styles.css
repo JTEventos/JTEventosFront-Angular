@@ -107,3 +107,9 @@ footer a {
 .container {
   padding-bottom: 75px;
 }
+
+/* Modals */
+
+.modal-header {
+  background-color: #e6d9d1;
+}

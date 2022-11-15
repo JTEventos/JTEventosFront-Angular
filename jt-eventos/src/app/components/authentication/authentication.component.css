@@ -1,0 +1,8 @@
+.modal-footer button {
+    flex: auto;
+}
+
+.modal-body h1 {
+    flex: auto;
+    text-align: center;
+}
