@@ -21,6 +21,9 @@ export class CustomersDetailsComponent implements OnInit {
   openDelete() {
     const modalRef = this.modalService.open(DeleteModalComponent);
     modalRef.componentInstance.description = 'cliente';
+    modalRef.componentInstance.deleteData.subscribe(() => {
+      this.activeModal.close();
+    })
   }
 
   editCustomer() {

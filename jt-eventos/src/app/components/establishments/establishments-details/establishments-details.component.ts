@@ -21,6 +21,9 @@ export class EstablishmentsDetailsComponent implements OnInit {
   openDelete() {
     const modalRef = this.modalService.open(DeleteModalComponent);
     modalRef.componentInstance.description = 'estabelecimento';
+    modalRef.componentInstance.deleteData.subscribe(() => {
+      this.activeModal.close();
+    })
   }
 
   editEstablishment() {

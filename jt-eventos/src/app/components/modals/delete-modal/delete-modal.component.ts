@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -8,6 +8,12 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DeleteModalComponent {
 	@Input() description: any;
+  @Output() deleteData = new EventEmitter<boolean>();
 
 	constructor(public activeModal: NgbActiveModal) {}
+
+  delete(data: boolean) {
+    this.deleteData.emit(data);
+    this.activeModal.close();
+  }
 }

@@ -22,6 +22,9 @@ export class EventsDetailsComponent implements OnInit {
   openDelete() {
     const modalRef = this.modalService.open(DeleteModalComponent);
     modalRef.componentInstance.description = 'evento';
+    modalRef.componentInstance.deleteData.subscribe(() => {
+      this.activeModal.close();
+    })
   }
 
   editEvent() {

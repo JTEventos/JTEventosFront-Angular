@@ -13,7 +13,10 @@ export class EventTypesCreateComponent implements OnInit {
   constructor(private modalService: NgbModal, public activeModal: NgbActiveModal) {}
 
 	cancel() {
-		this.modalService.open(CancelModalComponent);
+		const modalRef = this.modalService.open(CancelModalComponent);
+    modalRef.componentInstance.cancelData.subscribe(() => {
+      this.activeModal.close();
+    })
 	}
 
   ngOnInit(): void { }

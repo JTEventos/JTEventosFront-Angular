@@ -20,7 +20,10 @@ export class EventsCreateComponent implements OnInit {
 	}
 
 	cancel() {
-		this.modalService.open(CancelModalComponent);
+		const modalRef = this.modalService.open(CancelModalComponent);
+    modalRef.componentInstance.cancelData.subscribe(() => {
+      this.activeModal.close();
+    })
 	}
 
 	onDateSelection(date: NgbDate) {
