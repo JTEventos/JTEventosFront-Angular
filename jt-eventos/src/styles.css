@@ -18,12 +18,7 @@ p {
 }
 
 .content {
-  display: flex;
   margin: 82px auto 32px;
-  padding: 0 16px;
-  max-width: 960px;
-  flex-direction: column;
-  align-items: center;
 }
 
 svg.material-icons {
@@ -91,7 +86,7 @@ a, a:visited, a:hover {
   background-color: #0275d880;
 }
 
-/* Rodapé */
+/* Footers */
 
 footer {
   margin-top: 8px;

@@ -1,7 +1,13 @@
-<div class="content" role="main">
-  <h1>Seja bem-vindo à {{ title }}</h1>
-  <p>JT Eventos é um sistema com foco em criação e gerenciamento de eventos.</p>
-  <p>Selecione um dos menus acima para realizar os cadastros.</p>
+<header>
+  <app-nav-bar></app-nav-bar>
+</header>
 
-  <img src="../assets/jt-eventos.png" width="500" alt="Logo JT Eventos" />
-</div>
+<main>
+    <div class="content container" role="main">
+      <router-outlet></router-outlet>
+    </div>
+</main>
+
+<footer>
+  <app-footer></app-footer>
+</footer>

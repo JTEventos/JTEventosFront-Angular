@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css', '../styles.css']
 })
-export class AppComponent {
-  title = 'JT Eventos';
-}
+export class AppComponent { }
