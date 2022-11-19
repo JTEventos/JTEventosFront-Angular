@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
-import { UsersEditComponent } from '../users-edit/users-edit.component';
+import { UsersFormComponent } from '../users-form/users-form.component';
 
 @Component({
   selector: 'app-users-details',
@@ -18,7 +18,8 @@ export class UsersDetailsComponent implements OnInit {
   }
 
   editUser() {
-    this.modalService.open(UsersEditComponent, { centered: true });
+    const modalRef = this.modalService.open(UsersFormComponent, { centered: true });
+    modalRef.componentInstance.title = 'Edição';
   }
 
   ngOnInit(): void { }

@@ -12,7 +12,7 @@ h2 {
   font-weight: 500;
 }
 
-p { font-size: 12pt; }
+.report, li { font-size: 12pt; }
 
 .items-group {
   border-style: solid;
@@ -37,6 +37,4 @@ p { font-size: 12pt; }
   border-bottom: solid black 1pt;
 }
 
-.container-fluid {
-  display: none;
-}
+.container-fluid { display: none; }

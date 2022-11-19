@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { map, Observable, startWith } from 'rxjs';
-import { AuthenticationComponent } from 'src/app/components/authentication/authentication.component';
-import { UsersCreateComponent } from '../users-create/users-create.component';
 import { UsersDetailsComponent } from '../users-details/users-details.component';
+import { UsersFormComponent } from '../users-form/users-form.component';
 
 interface User {
 	name: string;
@@ -59,15 +58,12 @@ export class UsersTableComponent implements OnInit {
 	}
 
 	createUser() {
-		this.modalService.open(UsersCreateComponent, { centered: true });
+		const modalRef = this.modalService.open(UsersFormComponent, { centered: true });
+    modalRef.componentInstance.title = 'Cadastro';
 	}
 
 	detailUser() {
 		this.modalService.open(UsersDetailsComponent, { centered: true });
-	}
-
-	login() {
-		this.modalService.open(AuthenticationComponent, { centered: true });
 	}
 
 	ngOnInit(): void { }

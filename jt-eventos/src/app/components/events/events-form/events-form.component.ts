@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbCalendar, NgbDate, NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CancelModalComponent } from 'src/app/components/modals/cancel-modal/cancel-modal.component';
+import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.component';
 
 @Component({
-	selector: 'app-events-create',
-	templateUrl: './events-create.component.html',
-	styleUrls: ['./events-create.component.css', '../../../../styles.css']
+  selector: 'app-events-form',
+  templateUrl: './events-form.component.html',
+  styleUrls: ['./events-form.component.css', '../../../../styles.css']
 })
-export class EventsCreateComponent implements OnInit {
-	title = "Cadastro de evento"
+export class EventsFormComponent implements OnInit {
+	@Input() title: any;
 	hoveredDate: NgbDate | null = null;
 
 	fromDate: NgbDate | null;

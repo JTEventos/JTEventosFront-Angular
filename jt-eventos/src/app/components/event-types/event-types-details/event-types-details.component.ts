@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
-import { EventTypesEditComponent } from '../event-types-edit/event-types-edit.component';
+import { EventTypesFormComponent } from '../event-types-form/event-types-form.component';
 
 @Component({
   selector: 'app-event-types-details',
@@ -17,7 +17,8 @@ export class EventTypesDetailsComponent implements OnInit {
   }
 
   editEventType() {
-    this.modalService.open(EventTypesEditComponent, { centered: true });
+    const modalRef = this.modalService.open(EventTypesFormComponent, { centered: true });
+    modalRef.componentInstance.title = 'Edição';
   }
 
   ngOnInit(): void { }

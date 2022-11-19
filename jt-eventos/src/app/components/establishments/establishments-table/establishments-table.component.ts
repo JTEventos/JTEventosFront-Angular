@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { map, Observable, startWith } from 'rxjs';
-import { EstablishmentsCreateComponent } from '../establishments-create/establishments-create.component';
 import { EstablishmentsDetailsComponent } from '../establishments-details/establishments-details.component';
+import { EstablishmentsFormComponent } from '../establishments-form/establishments-form.component';
 
 interface Establishment {
 	description: string;
@@ -78,7 +78,8 @@ export class EstablishmentsTableComponent implements OnInit {
   }
 
   createEstablishment() {
-    this.modalService.open(EstablishmentsCreateComponent, { centered: true });
+    const modalRef = this.modalService.open(EstablishmentsFormComponent, { centered: true });
+    modalRef.componentInstance.title = 'Cadastro';
   }
 
   detailEstablishment() {

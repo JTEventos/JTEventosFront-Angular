@@ -8,12 +8,10 @@ import { EventsTableComponent } from './components/events/events-table/events-ta
 import { EventTypesTableComponent } from './components/event-types/event-types-table/event-types-table.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { HomeComponent } from './components/home/home.component';
-import { UsersEditComponent } from './components/users/users-edit/users-edit.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'users', component: UsersTableComponent },
-  { path: 'users/edit/:id', component: UsersEditComponent },
   { path: 'customers', component: CustomersTableComponent },
   { path: 'establishments', component: EstablishmentsTableComponent },
   { path: 'events', component: EventsTableComponent },

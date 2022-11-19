@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteModalComponent } from 'src/app/components/modals/delete-modal/delete-modal.component';
-import { EstablishmentsEditComponent } from '../establishments-edit/establishments-edit.component';
+import { EstablishmentsFormComponent } from '../establishments-form/establishments-form.component';
 
 @Component({
   selector: 'app-establishments-details',
@@ -27,7 +27,8 @@ export class EstablishmentsDetailsComponent implements OnInit {
   }
 
   editEstablishment() {
-    this.modalService.open(EstablishmentsEditComponent, { centered: true });
+    const modalRef = this.modalService.open(EstablishmentsFormComponent, { centered: true });
+    modalRef.componentInstance.title = 'Edição';
   }
 
   ngOnInit(): void { }

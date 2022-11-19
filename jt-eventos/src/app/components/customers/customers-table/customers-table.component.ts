@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { map, Observable, startWith } from 'rxjs';
-import { CustomersCreateComponent } from '../customers-create/customers-create.component';
 import { CustomersDetailsComponent } from '../customers-details/customers-details.component';
+import { CustomersFormComponent } from '../customers-form/customers-form.component';
 
 interface Customer {
   name: string;
@@ -86,7 +86,8 @@ export class CustomersTableComponent implements OnInit {
   }
 
   createCustomer() {
-    this.modalService.open(CustomersCreateComponent, { centered: true });
+    const modalRef = this.modalService.open(CustomersFormComponent, { centered: true });
+    modalRef.componentInstance.title = 'Cadastro';
   }
 
   detailCustomer() {

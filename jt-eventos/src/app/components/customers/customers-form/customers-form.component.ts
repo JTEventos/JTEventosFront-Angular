@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CancelModalComponent } from 'src/app/components/modals/cancel-modal/cancel-modal.component';
+import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.component';
 
 @Component({
-  selector: 'app-users-edit',
-  templateUrl: './users-edit.component.html',
-  styleUrls: ['./users-edit.component.css', '../../../../styles.css']
+  selector: 'app-customers-form',
+  templateUrl: './customers-form.component.html',
+  styleUrls: ['./customers-form.component.css', '../../../../styles.css']
 })
-export class UsersEditComponent implements OnInit {
-  title = "Edição de usuário";
+export class CustomersFormComponent implements OnInit {
+  @Input() title: any;
 
   constructor(private modalService: NgbModal, public activeModal: NgbActiveModal) { }
 

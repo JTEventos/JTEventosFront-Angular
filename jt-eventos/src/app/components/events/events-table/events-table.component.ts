@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { map, Observable, startWith } from 'rxjs';
-import { EventsCreateComponent } from '../events-create/events-create.component';
 import { EventsDetailsComponent } from '../events-details/events-details.component';
+import { EventsFormComponent } from '../events-form/events-form.component';
 
 interface Events {
   description: string;
@@ -69,7 +69,8 @@ export class EventsTableComponent implements OnInit {
   }
 
   createEvent() {
-    this.modalService.open(EventsCreateComponent, { centered: true });
+    const modalRef = this.modalService.open(EventsFormComponent, { centered: true });
+    modalRef.componentInstance.title = 'Cadastro';
   }
 
   detailEvent() {

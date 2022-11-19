@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteModalComponent } from 'src/app/components/modals/delete-modal/delete-modal.component';
-import { EventsEditComponent } from '../events-edit/events-edit.component';
+import { EventsFormComponent } from '../events-form/events-form.component';
 
 @Component({
   selector: 'app-events-details',
@@ -28,7 +28,8 @@ export class EventsDetailsComponent implements OnInit {
   }
 
   editEvent() {
-    this.modalService.open(EventsEditComponent, { centered: true });
+    const modalRef = this.modalService.open(EventsFormComponent, { centered: true });
+    modalRef.componentInstance.title = 'Edição';
   }
 
   ngOnInit(): void { }

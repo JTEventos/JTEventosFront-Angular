@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EventTypesEditComponent } from './event-types-edit.component';
+import { CustomersFormComponent } from './customers-form.component';
 
-describe('EventTypesEditComponent', () => {
-  let component: EventTypesEditComponent;
-  let fixture: ComponentFixture<EventTypesEditComponent>;
+describe('CustomersFormComponent', () => {
+  let component: CustomersFormComponent;
+  let fixture: ComponentFixture<CustomersFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EventTypesEditComponent ]
+      declarations: [ CustomersFormComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EventTypesEditComponent);
+    fixture = TestBed.createComponent(CustomersFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

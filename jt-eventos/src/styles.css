@@ -9,50 +9,19 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin: 8px 0;
-}
+p { margin: 0; }
 
-p {
-  margin: 0;
-}
-
-.content {
-  margin: 82px auto 32px;
-}
-
-svg.material-icons {
-  height: 24px;
-  width: auto;
-}
-
-svg.material-icons:not(:last-child) {
-  margin-right: 8px;
-}
+.content { margin: 82px auto 32px; }
 
 a, a:visited, a:hover {
   color: #1976d2;
   text-decoration: none;
 }
 
-.a-dark, .a-dark:visited, .a-table, .a-table:visited, .a-table:hover {
+.a-table, .a-table:visited, .a-table:hover {
   color: #000;
   text-decoration: none;
-}
-
-.a-success:hover, .a-dark:hover, .a-danger:hover {
-  color: #fff;
-  text-decoration: none;
-}
-
-.a-success, .a-success:visited {
-  color: #1d7b4d;
-  text-decoration: none;
-}
-
-.a-danger, .a-danger:visited {
-  color: #d52d3e;
-  text-decoration: none;
+  cursor: pointer;
 }
 
 /* Datepicker */
@@ -72,19 +41,14 @@ a, a:visited, a:hover {
   width: 2rem;
 }
 
-.custom-day.focused {
-  background-color: #e6e6e6;
-}
+.custom-day.focused { background-color: #e6e6e6; }
 
-.custom-day.range,
-.custom-day:hover {
+.custom-day.range, .custom-day:hover {
   background-color: #0275d8;
-  color: white;
+  color: #fff;
 }
 
-.custom-day.faded {
-  background-color: #0275d880;
-}
+.custom-day.faded { background-color: #0275d880; }
 
 /* Footers */
 
@@ -95,16 +59,10 @@ footer {
   line-height: 20px;
 }
 
-footer a {
-  align-items: center;
-}
+footer a { align-items: center; }
 
-.container {
-  padding-bottom: 75px;
-}
+.container { padding-bottom: 75px; }
 
 /* Modals */
 
-.modal-header {
-  background-color: #e6d9d1;
-}
+.modal-header { background-color: #e6d9d1; }
