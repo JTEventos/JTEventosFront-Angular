@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbCalendar, NgbDate, NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.component';
+import { ToastService } from '../../toast-global/toast-service';
 
 @Component({
   selector: 'app-events-form',
@@ -14,7 +15,7 @@ export class EventsFormComponent implements OnInit {
 	fromDate: NgbDate | null;
 	toDate: NgbDate | null;
 
-	constructor(private modalService: NgbModal, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, public activeModal: NgbActiveModal) {
+	constructor(public toastService: ToastService, private modalService: NgbModal, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, public activeModal: NgbActiveModal) {
 		this.fromDate = calendar.getToday();
 		this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
 	}
@@ -25,6 +26,11 @@ export class EventsFormComponent implements OnInit {
       this.activeModal.close();
     })
 	}
+
+  save() {
+    this.activeModal.close();
+    this.toastService.show('Cadastro realizado com sucesso.', { classname: 'bg-success text-light' });
+  }
 
 	onDateSelection(date: NgbDate) {
 		if (!this.fromDate && !this.toDate) {

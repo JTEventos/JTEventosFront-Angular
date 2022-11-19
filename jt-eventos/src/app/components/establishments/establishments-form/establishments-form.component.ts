@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.component';
+import { ToastService } from '../../toast-global/toast-service';
 
 @Component({
   selector: 'app-establishments-form',
@@ -10,7 +11,7 @@ import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.com
 export class EstablishmentsFormComponent implements OnInit {
   @Input() title: any;
 
-	constructor(private modalService: NgbModal, public activeModal: NgbActiveModal) {}
+	constructor(public toastService: ToastService, private modalService: NgbModal, public activeModal: NgbActiveModal) {}
 
 	cancel() {
 		const modalRef = this.modalService.open(CancelModalComponent);
@@ -18,6 +19,11 @@ export class EstablishmentsFormComponent implements OnInit {
       this.activeModal.close();
     })
 	}
+
+  save() {
+    this.activeModal.close();
+    this.toastService.show('Cadastro realizado com sucesso.', { classname: 'bg-success text-light' });
+  }
 
   ngOnInit(): void { }
 }
