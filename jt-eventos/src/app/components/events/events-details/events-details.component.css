@@ -12,11 +12,11 @@ h2 {
   font-weight: 500;
 }
 
-.report, li { font-size: 12pt; }
+.report { font-size: 12pt; }
 
 .items-group {
   border-style: solid;
-  border-color: black;
+  border-color: #000;
   border-width: 1pt 1pt 1pt 1pt;
   border-radius: 5pt;
   padding: 3pt 3pt 3pt 3pt;
@@ -34,7 +34,7 @@ h2 {
 
 .signature-field {
   padding-bottom: 24pt;
-  border-bottom: solid black 1pt;
+  border-bottom: solid #000 1pt;
 }
 
 .container-fluid { display: none; }

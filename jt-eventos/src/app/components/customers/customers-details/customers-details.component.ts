@@ -13,18 +13,14 @@ import { CustomersFormComponent } from '../customers-form/customers-form.compone
 export class CustomersDetailsComponent implements OnInit {
   title = "Detalhes do cliente"
 
-  constructor(public toastService: ToastService, config: NgbModalConfig, private modalService: NgbModal, public activeModal: NgbActiveModal) {
-    // customize default values of modals used by this component tree
-    config.backdrop = 'static';
-    config.keyboard = false;
-  }
+  constructor(public toastService: ToastService, private modalService: NgbModal, public activeModal: NgbActiveModal) { }
 
   openDelete() {
     const modalRef = this.modalService.open(DeleteModalComponent);
     modalRef.componentInstance.description = 'cliente';
     modalRef.componentInstance.deleteData.subscribe(() => {
       this.activeModal.close();
-      this.toastService.show('Cadastro excluído com sucesso.', { classname: 'bg-success text-light' });
+      this.toastService.showSuccess('Cadastro excluído com sucesso.');
     })
   }
 

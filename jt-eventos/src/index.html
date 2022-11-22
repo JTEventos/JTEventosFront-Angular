@@ -14,45 +14,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
-<script type="text/javascript">$("#MobileNumber").mask("(00) 00000-0000");</script>
-<script type="text/javascript">$("#PhoneNumber").mask("(00) 0000-0000");</script>
+<script type="text/javascript">$("#MobileNumber").mask("00 00000-0000");</script>
+<script type="text/javascript">$("#PhoneNumber").mask("00 0000-0000");</script>
 <script type="text/javascript">$("#Cpf").mask("000.000.000-00");</script>
 <script type="text/javascript">$("#Cep").mask("00000-000");</script>
-<script>
-  function clearForm() {
-    document.getElementById('Cep').value = ('');
-    document.getElementById('Street').value = ('');
-    document.getElementById('StreetNumber').value = ('');
-    document.getElementById('StreetComplement').value = ('');
-    document.getElementById('Neighborhood').value = ('');
-    document.getElementById('City').value = ('');
-    document.getElementById('State').value = ('');
-  }
-
-  function myCallback(content) {
-    if (!('erro' in content)) {
-      document.getElementById('Street').value = (content.logradouro);
-      document.getElementById('Neighborhood').value = (content.bairro);
-      document.getElementById('City').value = (content.localidade);
-      document.getElementById('State').value = (content.uf);
-    } else {
-      clearForm();
-    }
-  }
-
-  function searchCep(value) {
-    var cep = value.replace(/\D/g, '');
-    if (cep != '') {
-      var validateCep = /^[0-9]{8}$/;
-      if (validateCep.test(cep)) {
-        var script = document.createElement('script');
-        script.src = `https://viacep.com.br/ws/${cep}/json/?callback=myCallback`;
-        document.body.appendChild(script);
-      } else {
-        clearForm();
-      }
-    } else {
-      clearForm();
-    }
-  };
-</script>

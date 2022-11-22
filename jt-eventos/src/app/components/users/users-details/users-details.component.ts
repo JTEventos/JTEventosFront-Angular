@@ -11,11 +11,7 @@ import { UsersFormComponent } from '../users-form/users-form.component';
 export class UsersDetailsComponent implements OnInit {
   title = 'Detalhes do usuário';
 
-  constructor(config: NgbModalConfig, private modalService: NgbModal, public activeModal: NgbActiveModal) {
-    // customize default values of modals used by this component tree
-    config.backdrop = 'static';
-    config.keyboard = false;
-  }
+  constructor(private modalService: NgbModal, public activeModal: NgbActiveModal) { }
 
   editUser() {
     const modalRef = this.modalService.open(UsersFormComponent, { centered: true });

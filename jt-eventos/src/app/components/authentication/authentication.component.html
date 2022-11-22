@@ -1,58 +1,32 @@
 <div class="modal-header">
-    <div class="mx-auto">
-        <img src="../../assets/jt-eventos.png" alt="JT Eventos Logo" width="200px">
-    </div>
+  <div class="mx-auto">
+    <img src="../../assets/jt-eventos.png" alt="JT Eventos Logo" width="200px">
+  </div>
 </div>
 <div class="modal-body">
-    <div class="row">
-        <h1 class="position-absolute start-50 translate-middle-x">{{ title }}</h1>
-        
-        <div class="content" role="main">
-            <p class="position-absolute">Informe seu usuário e senha para acessar as funcionalidades do sistema.</p>
-        </div>
-        
-        <hr>
+  <div class="row">
+    <h1 class="position-absolute start-50 translate-middle-x">{{ title }}</h1>
 
-        <form>
-            <div class="row g-1 mx-auto">
-                <div class="mb-3">
-                    <strong><label for="Username" class="form-label">Usuário</label></strong>
-                    <input type="text" class="form-control" id="Username">
-                </div>
-                <div class="mb-3">
-                    <strong><label for="Password" class="form-label">Senha</label></strong>
-                    <input type="password" class="form-control" id="Password">
-                </div>
-            </div>
-        </form>
+    <div class="content" role="main">
+      <p class="position-absolute">Informe seu usuário e senha para acessar as funcionalidades do sistema.</p>
     </div>
+
+    <hr>
+
+    <form>
+      <div class="row g-1 mx-auto">
+        <div class="mb-3">
+          <strong><label for="Username" class="form-label">Usuário</label></strong>
+          <input type="text" class="form-control" id="Username">
+        </div>
+        <div class="mb-3">
+          <strong><label for="Password" class="form-label">Senha</label></strong>
+          <input type="password" class="form-control" id="Password">
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 <div class="modal-footer">
-    <button type="submit" class="btn btn-primary" (click)="activeModal.close('Ok click')">Login</button>
+  <button type="submit" class="btn btn-primary" (click)="activeModal.close('Ok click')">Login</button>
 </div>
-
-<!-- <div class="row">
-    <form>
-        <div class="col-md-2 mx-auto">
-            <img src="../../assets/jt-eventos.png" alt="JT Eventos Logo" width="200px">
-
-            <h1 class="position-absolute start-50 translate-middle-x">{{ title }}</h1>
-        </div>
-
-        <br><br><br>
-
-        <div class="col-md-3 row g-1 mx-auto">
-            <hr>
-            <div class="mb-3">
-                <label for="Username" class="form-label">Usuário</label>
-                <input type="text" class="form-control" id="Username">
-                </div>
-                <div class="mb-3">
-                <label for="Password" class="form-label">Senha</label>
-                <input type="password" class="form-control" id="Password">
-                </div> 
-
-            <button type="submit" class="btn btn-primary">Login</button>
-        </div>
-    </form>
-</div> -->
