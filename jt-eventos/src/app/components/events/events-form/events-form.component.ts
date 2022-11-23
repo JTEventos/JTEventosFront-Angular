@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbCalendar, NgbDate, NgbDateParserFormatter, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.component';
-import { ToastService } from '../../toast-global/toast-service';
+import { ToastsService } from 'src/app/services/toasts/toasts.service';
 
 @Component({
   selector: 'app-events-form',
@@ -16,9 +16,15 @@ export class EventsFormComponent implements OnInit {
 	fromDate: NgbDate | null;
 	toDate: NgbDate | null;
 
-	constructor(public toastService: ToastService, private modalService: NgbModal, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, public activeModal: NgbActiveModal) {
+	constructor(
+    private toastService: ToastsService,
+    private modalService: NgbModal,
+    private calendar: NgbCalendar,
+    public formatter: NgbDateParserFormatter,
+    private activeModal: NgbActiveModal
+  ) {
 		this.fromDate = calendar.getToday();
-		this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+		this.toDate = calendar.getNext(calendar.getToday(), 'd', 1);
 	}
 
 	cancel() {

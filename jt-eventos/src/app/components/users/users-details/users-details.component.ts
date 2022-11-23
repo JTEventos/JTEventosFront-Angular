@@ -11,7 +11,10 @@ import { UsersFormComponent } from '../users-form/users-form.component';
 export class UsersDetailsComponent implements OnInit {
   title = 'Detalhes do usuário';
 
-  constructor(private modalService: NgbModal, public activeModal: NgbActiveModal) { }
+  constructor(
+    private modalService: NgbModal,
+    public activeModal: NgbActiveModal
+  ) { }
 
   editUser() {
     const modalRef = this.modalService.open(UsersFormComponent, { centered: true });

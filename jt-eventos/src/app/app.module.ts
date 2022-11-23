@@ -28,7 +28,8 @@ import { CustomersFormComponent } from './components/customers/customers-form/cu
 import { EventsFormComponent } from './components/events/events-form/events-form.component';
 import { EstablishmentsFormComponent } from './components/establishments/establishments-form/establishments-form.component';
 import { EventTypesFormComponent } from './components/event-types/event-types-form/event-types-form.component';
-import { ToastGlobalComponent } from './components/toast-global/toast-global.component';
+import { ToastsComponent } from './components/toasts/toasts.component';
+import { LogoutModalComponent } from './components/modals/logout-modal/logout-modal.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { ToastGlobalComponent } from './components/toast-global/toast-global.com
     EventsFormComponent,
     EstablishmentsFormComponent,
     EventTypesFormComponent,
-    ToastGlobalComponent,
+    ToastsComponent,
+    LogoutModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteModalComponent } from 'src/app/components/modals/delete-modal/delete-modal.component';
-import { ToastService } from '../../toast-global/toast-service';
+import { ToastsService } from 'src/app/services/toasts/toasts.service';
 import { CustomersFormComponent } from '../customers-form/customers-form.component';
 
 @Component({
@@ -13,7 +13,11 @@ import { CustomersFormComponent } from '../customers-form/customers-form.compone
 export class CustomersDetailsComponent implements OnInit {
   title = "Detalhes do cliente"
 
-  constructor(public toastService: ToastService, private modalService: NgbModal, public activeModal: NgbActiveModal) { }
+  constructor(
+    private toastService: ToastsService,
+    private modalService: NgbModal,
+    public activeModal: NgbActiveModal
+  ) { }
 
   openDelete() {
     const modalRef = this.modalService.open(DeleteModalComponent);

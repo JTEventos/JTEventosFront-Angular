@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastsService } from 'src/app/services/toasts/toasts.service';
 
 @Component({
   selector: 'app-authentication',
@@ -9,7 +10,12 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class AuthenticationComponent implements OnInit {
   title = 'Login'
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(private toastService: ToastsService, public activeModal: NgbActiveModal) { }
+
+  login() {
+    this.toastService.showDanger("Usuário ou senha inválidos.");
+    this.activeModal.close();
+  }
 
   ngOnInit(): void { }
 }

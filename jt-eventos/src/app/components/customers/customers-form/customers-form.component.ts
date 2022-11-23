@@ -1,7 +1,8 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.component';
-import { ToastService } from '../../toast-global/toast-service';
+import { ViaCepService } from 'src/app/services/via-cep/via-cep.service';
+import { ToastsService } from 'src/app/services/toasts/toasts.service';
 
 @Component({
   selector: 'app-customers-form',
@@ -20,7 +21,12 @@ export class CustomersFormComponent implements OnInit {
   @ViewChild('City', { static: false }) city: ElementRef<HTMLInputElement> = {} as ElementRef;
   @ViewChild('State', { static: false }) state: ElementRef<HTMLInputElement> = {} as ElementRef;
 
-  constructor(public toastService: ToastService, private modalService: NgbModal, public activeModal: NgbActiveModal) { }
+  constructor(
+    public viaCep: ViaCepService,
+    private toastService: ToastsService,
+    private modalService: NgbModal,
+    private activeModal: NgbActiveModal
+  ) { }
 
   cancel() {
     const modalRef = this.modalService.open(CancelModalComponent);
@@ -49,7 +55,7 @@ export class CustomersFormComponent implements OnInit {
       this.city.nativeElement.value = (body.localidade);
       this.state.nativeElement.value = (body.uf);
     } else {
-      this.toastService.showDanger('CEP informado não existe.')
+      this.toastService.showDanger('CEP informado não encontrado.')
       this.clearForm();
     }
   }
@@ -62,6 +68,7 @@ export class CustomersFormComponent implements OnInit {
         const body = await (await fetch(`https://viacep.com.br/ws/${cep}/json`)).json();
         this.myCallback(body);
       } else {
+        this.toastService.showWarning('CEP informado com formato inválido.')
         this.clearForm();
       }
     } else {

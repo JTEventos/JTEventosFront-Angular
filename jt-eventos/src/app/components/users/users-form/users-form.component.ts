@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.component';
-import { ToastService } from '../../toast-global/toast-service';
+import { ToastsService } from 'src/app/services/toasts/toasts.service';
 
 @Component({
   selector: 'app-users-form',
@@ -12,7 +12,11 @@ import { ToastService } from '../../toast-global/toast-service';
 export class UsersFormComponent implements OnInit {
   @Input() title: any;
 
-  constructor(public toastService: ToastService, private modalService: NgbModal, public activeModal: NgbActiveModal) { }
+  constructor(
+    private toastService: ToastsService,
+    private modalService: NgbModal,
+    private activeModal: NgbActiveModal
+  ) { }
 
 	cancel() {
 		const modalRef = this.modalService.open(CancelModalComponent);

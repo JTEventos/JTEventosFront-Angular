@@ -1,0 +1,11 @@
+<div class="modal-header">
+  <h5 class="modal-title">Encerrar sessão</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  Tem certeza que deseja sair do sistema?
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Close click')">Voltar</button>
+  <button type="button" class="btn btn-outline-primary" (click)="logout(true)">Sair do sistema</button>
+</div>

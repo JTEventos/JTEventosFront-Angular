@@ -11,7 +11,10 @@ import { EventTypesFormComponent } from '../event-types-form/event-types-form.co
 export class EventTypesDetailsComponent implements OnInit {
   title = "Detalhes do tipo de evento"
 
-  constructor(private modalService: NgbModal, public activeModal: NgbActiveModal) { }
+  constructor(
+    private modalService: NgbModal,
+    public activeModal: NgbActiveModal
+  ) { }
 
   editEventType() {
     const modalRef = this.modalService.open(EventTypesFormComponent, { centered: true });

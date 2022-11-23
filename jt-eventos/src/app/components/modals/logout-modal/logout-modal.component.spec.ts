@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ToastGlobalComponent } from './toast-global.component';
+import { LogoutModalComponent } from './logout-modal.component';
 
-describe('ToastGlobalComponent', () => {
-  let component: ToastGlobalComponent;
-  let fixture: ComponentFixture<ToastGlobalComponent>;
+describe('LogoutModalComponent', () => {
+  let component: LogoutModalComponent;
+  let fixture: ComponentFixture<LogoutModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ToastGlobalComponent ]
+      declarations: [ LogoutModalComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ToastGlobalComponent);
+    fixture = TestBed.createComponent(LogoutModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
