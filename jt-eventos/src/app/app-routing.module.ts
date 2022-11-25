@@ -8,6 +8,7 @@ import { EventsTableComponent } from './components/events/events-table/events-ta
 import { EventTypesTableComponent } from './components/event-types/event-types-table/event-types-table.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { HomeComponent } from './components/home/home.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'events', component: EventsTableComponent },
   { path: 'event-types', component: EventTypesTableComponent },
   { path: 'login', component: AuthenticationComponent },
+  { path: '**', component: PageNotFoundComponent }
 ]
 
 @NgModule({

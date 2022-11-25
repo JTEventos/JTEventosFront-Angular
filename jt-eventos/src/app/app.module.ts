@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -30,6 +31,7 @@ import { EstablishmentsFormComponent } from './components/establishments/establi
 import { EventTypesFormComponent } from './components/event-types/event-types-form/event-types-form.component';
 import { ToastsComponent } from './components/toasts/toasts.component';
 import { LogoutModalComponent } from './components/modals/logout-modal/logout-modal.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,7 @@ import { LogoutModalComponent } from './components/modals/logout-modal/logout-mo
     EventTypesFormComponent,
     ToastsComponent,
     LogoutModalComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +69,7 @@ import { LogoutModalComponent } from './components/modals/logout-modal/logout-mo
     ReactiveFormsModule,
     NgxPrintModule,
     AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [

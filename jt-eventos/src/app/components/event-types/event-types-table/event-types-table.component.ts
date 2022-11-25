@@ -2,21 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { map, Observable, startWith } from 'rxjs';
+import { EventType } from 'src/app/classes/event-types/event-type';
+import { EventTypeApiService } from 'src/app/services/event-types/event-type-api.service';
 import { EventTypesDetailsComponent } from '../event-types-details/event-types-details.component';
 import { EventTypesFormComponent } from '../event-types-form/event-types-form.component';
 
-interface EventType {
-  description: string;
-}
-
-const EVENT_TYPES: EventType[] = [
-  {
-    description: 'Casamento',
-  },
-  {
-    description: 'Aniversário',
-  },
-];
+const EVENT_TYPES: EventType[] = [];
 
 function search(text: string): EventType[] {
   return EVENT_TYPES.filter((eventType) => {
@@ -37,10 +28,12 @@ export class EventTypesTableComponent implements OnInit {
   title = "Tipos de Evento"
   eventTypes$: Observable<EventType[]>;
   filter = new FormControl('', { nonNullable: true });
+  list: EventType[] = [];
 
   constructor(
     config: NgbModalConfig,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private eventTypeService: EventTypeApiService
   ) {
     // customize default values of modals used by this component tree
     config.backdrop = 'static';
@@ -50,6 +43,14 @@ export class EventTypesTableComponent implements OnInit {
       startWith(''),
       map((text) => search(text)),
     );
+
+    this.findAll();
+  }
+
+  findAll() {
+    this.eventTypeService.findAll().subscribe((data) => {
+      this.list = data;
+    })
   }
 
   createEventType() {

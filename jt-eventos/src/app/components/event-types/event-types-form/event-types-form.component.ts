@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.component';
 import { ToastsService } from 'src/app/services/toasts/toasts.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EventTypeApiService } from 'src/app/services/event-types/event-type-api.service';
+import { EventType } from 'src/app/classes/event-types/event-type';
 
 @Component({
   selector: 'app-event-types-form',
@@ -12,11 +15,17 @@ import { ToastsService } from 'src/app/services/toasts/toasts.service';
 export class EventTypesFormComponent implements OnInit {
   @Input() title: any;
 
+  id!: number;
+  eventType = new EventType();
+
   constructor(
     private toastService: ToastsService,
     private modalService: NgbModal,
-    private activeModal: NgbActiveModal
-  ) {}
+    private activeModal: NgbActiveModal,
+    private route: ActivatedRoute,
+    private eventTypeService: EventTypeApiService,
+    private router: Router
+  ) { }
 
 	cancel() {
 		const modalRef = this.modalService.open(CancelModalComponent);
@@ -26,9 +35,24 @@ export class EventTypesFormComponent implements OnInit {
 	}
 
   save() {
+    if (!this.id) {
+      this.eventTypeService.createEventType(this.eventType).subscribe((eventType) => {
+        this.eventType = new EventType();
+        this.toastService.showSuccess('Cadastro realizado com sucesso.');
+      });
+    } else {
+      this.eventTypeService.updateEventType(this.id, this.eventType);
+      this.toastService.showSuccess('Edição realizada com sucesso.');
+    }
     this.activeModal.close();
-    this.toastService.showSuccess('Cadastro realizado com sucesso.');
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    // this.id = +this.route.snapshot.params['id'];
+    // if (this.id) {
+    //   this.eventType = Object.assign({},
+    //     this.eventType = this.eventTypeService.findById(this.id)
+    //   );
+    // }
+  }
 }
