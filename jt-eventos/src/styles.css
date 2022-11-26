@@ -66,3 +66,14 @@ footer a { align-items: center; }
 /* Modals */
 
 .modal-header { background-color: #e6d9d1; }
+
+/* Home & Page Not Found */
+
+.home {
+  display: flex;
+  margin: 82px auto 32px;
+  padding: 0 16px;
+  max-width: 960px;
+  flex-direction: column;
+  align-items: center;
+}

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';import { EventType } from 'src/app/classes/event-types/event-type';
-;
+import { Observable } from 'rxjs';
+import { EventType } from 'src/app/classes/event-types/event-type';
 
 const httpOptions = {
   headers: new HttpHeaders({

@@ -5,6 +5,7 @@ import { ToastsService } from 'src/app/services/toasts/toasts.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventTypeApiService } from 'src/app/services/event-types/event-type-api.service';
 import { EventType } from 'src/app/classes/event-types/event-type';
+import { HttpResponse, HttpResponseBase, HttpStatusCode } from '@angular/common/http';
 
 @Component({
   selector: 'app-event-types-form',
@@ -39,12 +40,12 @@ export class EventTypesFormComponent implements OnInit {
       this.eventTypeService.createEventType(this.eventType).subscribe((eventType) => {
         this.eventType = new EventType();
         this.toastService.showSuccess('Cadastro realizado com sucesso.');
+        this.activeModal.close();
       });
     } else {
       this.eventTypeService.updateEventType(this.id, this.eventType);
       this.toastService.showSuccess('Edição realizada com sucesso.');
     }
-    this.activeModal.close();
   }
 
   ngOnInit(): void {

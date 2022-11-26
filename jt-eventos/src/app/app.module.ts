@@ -32,6 +32,11 @@ import { EventTypesFormComponent } from './components/event-types/event-types-fo
 import { ToastsComponent } from './components/toasts/toasts.component';
 import { LogoutModalComponent } from './components/modals/logout-modal/logout-modal.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { EventTypeLookupPipe } from './pipes/event-types/event-type-lookup.pipe';
+import { EventLookupPipe } from './pipes/events/event-lookup.pipe';
+import { CustomerLookupPipe } from './pipes/customers/customer-lookup.pipe';
+import { EstablishmentLookupPipe } from './pipes/establishments/establishment-lookup.pipe';
+import { UserLookupPipe } from './pipes/users/user-lookup.pipe';
 
 @NgModule({
   declarations: [
@@ -60,6 +65,11 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     ToastsComponent,
     LogoutModalComponent,
     PageNotFoundComponent,
+    EventTypeLookupPipe,
+    EventLookupPipe,
+    CustomerLookupPipe,
+    EstablishmentLookupPipe,
+    UserLookupPipe,
   ],
   imports: [
     BrowserModule,

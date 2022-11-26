@@ -1,22 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
-import { map, Observable, startWith } from 'rxjs';
 import { EventType } from 'src/app/classes/event-types/event-type';
 import { EventTypeApiService } from 'src/app/services/event-types/event-type-api.service';
 import { EventTypesDetailsComponent } from '../event-types-details/event-types-details.component';
 import { EventTypesFormComponent } from '../event-types-form/event-types-form.component';
-
-const EVENT_TYPES: EventType[] = [];
-
-function search(text: string): EventType[] {
-  return EVENT_TYPES.filter((eventType) => {
-    const term = text.toLowerCase();
-    return (
-      eventType.description.toLowerCase().includes(term)
-    );
-  });
-}
 
 @Component({
   selector: 'app-event-types-table',
@@ -26,8 +13,7 @@ function search(text: string): EventType[] {
 })
 export class EventTypesTableComponent implements OnInit {
   title = "Tipos de Evento"
-  eventTypes$: Observable<EventType[]>;
-  filter = new FormControl('', { nonNullable: true });
+  searchField = '';
   list: EventType[] = [];
 
   constructor(
@@ -35,14 +21,8 @@ export class EventTypesTableComponent implements OnInit {
     private modalService: NgbModal,
     private eventTypeService: EventTypeApiService
   ) {
-    // customize default values of modals used by this component tree
     config.backdrop = 'static';
     config.keyboard = false;
-
-    this.eventTypes$ = this.filter.valueChanges.pipe(
-      startWith(''),
-      map((text) => search(text)),
-    );
 
     this.findAll();
   }
@@ -50,7 +30,7 @@ export class EventTypesTableComponent implements OnInit {
   findAll() {
     this.eventTypeService.findAll().subscribe((data) => {
       this.list = data;
-    })
+    });
   }
 
   createEventType() {
@@ -58,7 +38,7 @@ export class EventTypesTableComponent implements OnInit {
     modalRef.componentInstance.title = 'Cadastro';
   }
 
-  detailEventType() {
+  detailEventType(id: number) {
     this.modalService.open(EventTypesDetailsComponent, { centered: true });
   }
 

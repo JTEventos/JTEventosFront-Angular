@@ -1,7 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.component';
-import { ViaCepService } from 'src/app/services/via-cep/via-cep.service';
 import { ToastsService } from 'src/app/services/toasts/toasts.service';
 
 @Component({
@@ -22,7 +21,6 @@ export class CustomersFormComponent implements OnInit {
   @ViewChild('State', { static: false }) state: ElementRef<HTMLInputElement> = {} as ElementRef;
 
   constructor(
-    public viaCep: ViaCepService,
     private toastService: ToastsService,
     private modalService: NgbModal,
     private activeModal: NgbActiveModal
@@ -78,3 +76,4 @@ export class CustomersFormComponent implements OnInit {
 
   ngOnInit(): void { }
 }
+
