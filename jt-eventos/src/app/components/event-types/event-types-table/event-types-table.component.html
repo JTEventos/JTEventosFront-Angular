@@ -16,7 +16,7 @@
     <div class="mb-3 row">
       <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Pesquisar:</label>
       <div class="col-xs-3 col-sm-auto">
-        <input id="table-filtering-search" class="form-control" type="text" [(ngModel)]="searchField" />
+        <input id="table-filtering-search" class="form-control" type="text" [(ngModel)]="searchField" [ngModelOptions]="{standalone: true}" />
       </div>
     </div>
   </form>
@@ -29,7 +29,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let eventType of list"> <!-- | eventTypeLookup: searchField -->
+      <tr *ngFor="let eventType of list | eventTypeLookup: searchField">
         <td>{{ eventType.description }}</td>
         <td>
           <a class="a-table" routerLink="details/{{ eventType._id }}">
@@ -44,5 +44,8 @@
 </div>
 
 <div *ngIf="list.length <= 0">
-  <p>Não há {{ title }} cadastrados</p>
+  <br />
+  <ngb-alert [dismissible]="false">
+		<p>Não há {{ title }} cadastrados</p>
+	</ngb-alert>
 </div>

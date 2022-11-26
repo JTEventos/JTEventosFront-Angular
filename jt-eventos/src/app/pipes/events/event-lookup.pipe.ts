@@ -8,14 +8,13 @@ import { Event } from 'src/app/classes/events/event';
 export class EventLookupPipe implements PipeTransform {
 
   transform(events: Event[], text?: string): Event[] {
-    const term = text ? text : '';
-    term.toLowerCase();
-    return events.filter((data) => {
+    const term = text?.toLowerCase() ? text : ''.toLowerCase();
+    return events.filter((data) =>
       data.description.toLowerCase().includes(term) ||
       data.customerId.toString().toLowerCase().includes(term) ||
       data.establishmentId.toString().toLowerCase().includes(term) ||
       data.startDate.includes(term) ||
       data.finishDate.includes(term)
-    });
+    );
   }
 }

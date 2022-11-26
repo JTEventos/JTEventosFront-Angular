@@ -8,10 +8,9 @@ import { EventType } from 'src/app/classes/event-types/event-type';
 export class EventTypeLookupPipe implements PipeTransform {
 
   transform(eventTypes: EventType[], text?: string): EventType[] {
-    const term = text ? text : '';
-    term.toLowerCase();
-    return eventTypes.filter((data) => {
-      data.description.toLocaleLowerCase().includes(term)
-    });
+    const term = text?.toLowerCase() ? text : ''.toLowerCase();
+    return eventTypes.filter((data) =>
+      data.description.toLowerCase().includes(term)
+    );
   }
 }

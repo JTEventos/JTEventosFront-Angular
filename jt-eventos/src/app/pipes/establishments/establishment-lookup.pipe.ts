@@ -8,9 +8,8 @@ import { Establishment } from 'src/app/classes/establishments/establishment';
 export class EstablishmentLookupPipe implements PipeTransform {
 
   transform(establishments: Establishment[], text?: string): Establishment[] {
-    const term = text ? text : '';
-    term.toLowerCase();
-    return establishments.filter((data) => {
+    const term = text?.toLowerCase() ? text : ''.toLowerCase();
+    return establishments.filter((data) =>
 			data.description.toLowerCase().includes(term) ||
 			data.cep.includes(term) ||
 			data.street.toLowerCase().includes(term) ||
@@ -19,6 +18,6 @@ export class EstablishmentLookupPipe implements PipeTransform {
       data.neighborhood.toLowerCase().includes(term) ||
       data.city.toLowerCase().includes(term) ||
       data.state.toLowerCase().includes(term)
-    });
+    );
   }
 }

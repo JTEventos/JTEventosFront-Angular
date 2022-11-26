@@ -8,13 +8,12 @@ import { Customer } from 'src/app/classes/customers/customer';
 export class CustomerLookupPipe implements PipeTransform {
 
   transform(customers: Customer[], text?: string): Customer[] {
-    const term = text ? text : '';
-    term.toLowerCase();
-    return customers.filter((data) => {
+    const term = text?.toLowerCase() ? text : ''.toLowerCase();
+    return customers.filter((data) =>
       data.name.toLowerCase().includes(term) ||
       data.cpf.includes(term) ||
       data.email.toLowerCase().includes(term) ||
       data.mobileNumber.includes(term)
-    });
+    );
   }
 }
