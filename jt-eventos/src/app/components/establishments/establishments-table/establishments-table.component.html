@@ -31,8 +31,17 @@
     </thead>
     <tbody>
       <tr *ngFor="let establishment of list | establishmentLookup: searchField">
-        <td>{{ establishment.description }}</td>
-        <td>{{ establishment.street }}, {{ establishment.streetNumber }}, {{ establishment.streetComplement }}, {{ establishment.neighborhood }} - {{ establishment.city }}/{{ establishment.state }}, CEP: {{ establishment.cep }}</td>
+        <td><ngb-highlight [result]="establishment.description" [term]="searchField"></ngb-highlight></td>
+        <td><ngb-highlight
+          [result]="establishment.street
+          + ', ' + establishment.streetNumber
+          + ', ' + establishment.streetComplement
+          + ', ' + establishment.neighborhood
+          + ' - ' + establishment.city
+          + '/' + establishment.state
+          + ', CEP: ' + establishment.cep"
+          [term]="searchField">
+        </ngb-highlight></td>
         <td>
           <a class="a-table" routerLink="details/{{ establishment._id }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

@@ -34,11 +34,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let event of list | eventLookup: searchField">
-        <td>{{ event.description }}</td>
-        <td>{{ event.customerId }}</td>
-        <td>{{ event.establishmentId }}</td>
-        <td>{{ event.startDate }}</td>
-        <td>{{ event.finishDate }}</td>
+        <td><ngb-highlight [result]="event.description" [term]="searchField"></ngb-highlight></td>
+        <td><ngb-highlight [result]="event.customerId.toString()" [term]="searchField"></ngb-highlight></td>
+        <td><ngb-highlight [result]="event.establishmentId.toString()" [term]="searchField"></ngb-highlight></td>
+        <td><ngb-highlight [result]="event.startDate" [term]="searchField"></ngb-highlight></td>
+        <td><ngb-highlight [result]="event.finishDate" [term]="searchField"></ngb-highlight></td>
         <td>
           <a class="a-table" routerLink="details/{{ event._id }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

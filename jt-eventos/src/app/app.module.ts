@@ -22,7 +22,7 @@ import { AuthenticationComponent } from './components/authentication/authenticat
 import { CancelModalComponent } from './components/modals/cancel-modal/cancel-modal.component';
 import { DeleteModalComponent } from './components/modals/delete-modal/delete-modal.component';
 import { NgxPrintModule } from 'ngx-print';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './routes/app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { UsersFormComponent } from './components/users/users-form/users-form.component';
 import { CustomersFormComponent } from './components/customers/customers-form/customers-form.component';

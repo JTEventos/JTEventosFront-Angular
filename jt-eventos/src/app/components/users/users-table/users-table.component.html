@@ -34,9 +34,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let user of list | userLookup: searchField">
-        <td>{{ user.name }}</td>
-        <td>{{ user.username }}</td>
-        <td>{{ user.role }}</td>
+        <td><ngb-highlight [result]="user.name" [term]="searchField"></ngb-highlight></td>
+        <td><ngb-highlight [result]="user.username" [term]="searchField"></ngb-highlight></td>
+        <td><ngb-highlight [result]="user.role" [term]="searchField"></ngb-highlight></td>
         <td>
           <a class="a-table" routerLink="details/{{ user._id }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

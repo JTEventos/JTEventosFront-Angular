@@ -33,10 +33,10 @@
     </thead>
     <tbody>
       <tr *ngFor="let customer of list | customerLookup: searchField">
-        <td>{{ customer.name }}</td>
-        <td>{{ customer.cpf }}</td>
-        <td>{{ customer.email }}</td>
-        <td>{{ customer.mobileNumber }}</td>
+        <td><ngb-highlight [result]="customer.name" [term]="searchField"></ngb-highlight></td>
+        <td><ngb-highlight [result]="customer.cpf" [term]="searchField"></ngb-highlight></td>
+        <td><ngb-highlight [result]="customer.email" [term]="searchField"></ngb-highlight></td>
+        <td><ngb-highlight [result]="customer.mobileNumber" [term]="searchField"></ngb-highlight></td>
         <td>
           <a class="a-table" routerLink="details/{{ customer._id }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

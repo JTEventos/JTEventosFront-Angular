@@ -30,7 +30,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let eventType of list | eventTypeLookup: searchField">
-        <td>{{ eventType.description }}</td>
+        <td><ngb-highlight [result]="eventType.description" [term]="searchField"></ngb-highlight></td>
         <td>
           <a class="a-table" routerLink="details/{{ eventType._id }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
