@@ -1,12 +1,12 @@
 <div class="btn-toolbar" role="toolbar">
-  <button class="btn btn-outline-primary" routerLink="create">
+  <button class="btn btn-outline-primary" routerLink="/events/create">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
       <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
     </svg>&nbsp;
     Cadastrar
   </button>
 
-  <h1 class="position-absolute start-50 translate-middle-x">{{ title }}</h1>
+  <h1 class="position-absolute start-50 translate-middle-x">Eventos</h1>
 </div>
 
 <hr />
@@ -40,7 +40,7 @@
         <td><ngb-highlight [result]="event.startDate" [term]="searchField"></ngb-highlight></td>
         <td><ngb-highlight [result]="event.finishDate" [term]="searchField"></ngb-highlight></td>
         <td>
-          <a class="a-table" routerLink="details/{{ event._id }}">
+          <a class="a-table" routerLink="/events/details/{{ event._id }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
             </svg>
@@ -54,6 +54,6 @@
 <div *ngIf="list.length <= 0">
   <br />
   <ngb-alert [dismissible]="false">
-		<p>Não há {{ title }} cadastrados</p>
+		<p>Não há Eventos cadastrados</p>
 	</ngb-alert>
 </div>

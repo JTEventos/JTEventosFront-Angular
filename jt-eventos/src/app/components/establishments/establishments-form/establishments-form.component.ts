@@ -1,16 +1,20 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.component';
 import { ToastsService } from 'src/app/services/toasts/toasts.service';
+import { Router } from '@angular/router';
+import { EstablishmentApiService } from 'src/app/services/establishments/establishment-api.service';
+import { Establishment } from 'src/app/classes/establishments/establishment';
 
 @Component({
   selector: 'app-establishments-form',
   templateUrl: './establishments-form.component.html',
   styleUrls: ['./establishments-form.component.css', '../../../../styles.css'],
-  providers: [NgbModalConfig, NgbModal]
 })
 export class EstablishmentsFormComponent implements OnInit {
-  @Input() title: any;
+  title = 'Cadastro';
+  id!: number;
+  establishment = new Establishment();
 
   @ViewChild('Cep', { static: false }) cep: ElementRef<HTMLInputElement> = {} as ElementRef;
   @ViewChild('Street', { static: false }) street: ElementRef<HTMLInputElement> = {} as ElementRef;
@@ -23,19 +27,28 @@ export class EstablishmentsFormComponent implements OnInit {
 	constructor(
     private toastService: ToastsService,
     private modalService: NgbModal,
-    private activeModal: NgbActiveModal,
+    private establishmentService: EstablishmentApiService,
+    private router: Router,
   ) {}
 
 	cancel() {
 		const modalRef = this.modalService.open(CancelModalComponent);
     modalRef.componentInstance.cancelData.subscribe(() => {
-      this.activeModal.close();
+      this.router.navigate(['/establishments']);
     })
 	}
 
   save() {
-    this.activeModal.close();
-    this.toastService.showSuccess('Cadastro realizado com sucesso.');
+    if (!this.id) {
+      this.establishmentService.createEstablishment(this.establishment).subscribe((establishment) => {
+        this.establishment = new Establishment();
+        this.router.navigate(['/establishments']);
+        this.toastService.showSuccess('Cadastro realizado com sucesso.');
+      });
+    } else {
+      this.establishmentService.updateEstablishment(this.id, this.establishment);
+      this.toastService.showSuccess('Edição realizada com sucesso.');
+    }
   }
 
   clearForm() {

@@ -1,16 +1,20 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.component';
 import { ToastsService } from 'src/app/services/toasts/toasts.service';
+import { Customer } from 'src/app/classes/customers/customer';
+import { CustomerApiService } from 'src/app/services/customers/customer-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customers-form',
   templateUrl: './customers-form.component.html',
   styleUrls: ['./customers-form.component.css', '../../../../styles.css'],
-  providers: [NgbModalConfig, NgbModal]
 })
 export class CustomersFormComponent implements OnInit {
-  @Input() title: any;
+  title = 'Cadastro';
+  id!: number;
+  customer = new Customer();
 
   @ViewChild('Cep', { static: false }) cep: ElementRef<HTMLInputElement> = {} as ElementRef;
   @ViewChild('Street', { static: false }) street: ElementRef<HTMLInputElement> = {} as ElementRef;
@@ -23,19 +27,28 @@ export class CustomersFormComponent implements OnInit {
   constructor(
     private toastService: ToastsService,
     private modalService: NgbModal,
-    private activeModal: NgbActiveModal
+    private customerService: CustomerApiService,
+    private router: Router
   ) { }
 
-  cancel() {
-    const modalRef = this.modalService.open(CancelModalComponent);
+	cancel() {
+		const modalRef = this.modalService.open(CancelModalComponent);
     modalRef.componentInstance.cancelData.subscribe(() => {
-      this.activeModal.close();
+      this.router.navigate(['/customers']);
     })
-  }
+	}
 
   save() {
-    this.activeModal.close();
-    this.toastService.showSuccess('Cadastro realizado com sucesso.');
+    if (!this.id) {
+      this.customerService.createCustomer(this.customer).subscribe((customer) => {
+        this.customer = new Customer();
+        this.router.navigate(['/customers']);
+        this.toastService.showSuccess('Cadastro realizado com sucesso.');
+      });
+    } else {
+      this.customerService.updateCustomer(this.id, this.customer);
+      this.toastService.showSuccess('Edição realizada com sucesso.');
+    }
   }
 
   clearForm() {

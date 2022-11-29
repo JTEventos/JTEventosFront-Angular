@@ -1,147 +1,77 @@
-<!-- <div class="modal-header">
-  <h5 class="modal-title" id="modal-basic-title">{{ title }} de cliente</h5>
-</div>
-<div class="modal-body">
-  <div class="row">
-    <form>
-      <div class="row g-1 mx-auto">
-        <div class="form-group">
-          <strong><label for="Name" class="control-label">Nome completo</label></strong>
-          <input id="Name" class="form-control" required />
-        </div>
-        <div class="form-group">
-          <strong><label for="Cpf" class="control-label">CPF</label></strong>
-          <input id="Cpf" class="form-control" required />
-        </div>
-        <div class="form-group">
-          <strong><label for="Email" class="control-label">E-mail</label></strong>
-          <input type="email" id="Email" class="form-control" required />
-        </div>
-        <div class="form-group col-md-6">
-          <strong><label for="PhoneNumber" class="control-label">Telefone fixo</label></strong>
-          <input id="PhoneNumber" class="form-control" />
-        </div>
-        <div class="form-group col-md-6">
-          <strong><label for="MobileNumber" class="control-label">Telefone celular</label></strong>
-          <input id="MobileNumber" class="form-control" required />
-        </div>
-        <div class="form-group">
-          <strong><label for="Cep" class="control-label">CEP</label></strong>
-          <input id="Cep" #Cep class="form-control" (blur)="searchCep()" required />
-        </div>
-        <div class="form-group">
-          <strong><label for="Street" class="control-label">Logradouro</label></strong>
-          <input id="Street" #Street class="form-control" readonly />
-        </div>
-        <div class="form-group col-md-6">
-          <strong><label for="StreetNumber" class="control-label">Número</label></strong>
-          <input id="StreetNumber" #StreetNumber class="form-control" required />
-        </div>
-        <div class="form-group col-md-6">
-          <strong><label for="StreetComplement" class="control-label">Complemento</label></strong>
-          <input id="StreetComplement" #StreetComplement class="form-control" />
-        </div>
-        <div class="form-group">
-          <strong><label for="Neighborhood" class="control-label">Bairro</label></strong>
-          <input id="Neighborhood" #Neighborhood class="form-control" readonly />
-        </div>
-        <div class="form-group col-md-10">
-          <strong><label for="City" class="control-label">Cidade</label></strong>
-          <input id="City" #City class="form-control" readonly />
-        </div>
-        <div class="form-group col-md-2">
-          <strong><label for="State" class="control-label">UF</label></strong>
-          <input id="State" #State class="form-control" readonly />
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="cancel()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-      <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-    </svg>&nbsp;
-    Cancelar
-  </button>
-  <button type="button" class="btn btn-outline-success" (click)="save()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
-      <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
-    </svg>&nbsp;
-    Salvar cliente
-  </button>
-</div> -->
-
 <div class="row">
   <form>
     <div class="btn-toolbar" role="toolbar">
-      <button type="button" class="btn btn-outline-dark" (click)="cancel()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-        </svg>&nbsp;
-        Cancelar
-      </button>
+      <div class="btn-group me-2" role="group">
+        <button type="button" class="btn btn-outline-success" (click)="save()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+          </svg>&nbsp;
+          Salvar
+        </button>
+      </div>
 
-      <button type="button" class="btn btn-outline-success" (click)="save()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
-          <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
-        </svg>&nbsp;
-        Salvar cliente
-      </button>
+      <div class="btn-group me-2" role="group">
+        <button type="button" class="btn btn-outline-dark" (click)="cancel()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+          </svg>&nbsp;
+          Cancelar
+        </button>
+      </div>
 
       <h1 class="position-absolute start-50 translate-middle-x">{{ title }} de cliente</h1>
     </div>
 
     <hr />
 
-    <div class="row g-1 mx-auto">
+    <div class="col-md-5 row g-1 mx-auto">
       <div class="form-group">
         <strong><label for="Name" class="control-label">Nome completo</label></strong>
-        <input id="Name" class="form-control" required />
+        <input id="Name" class="form-control" [(ngModel)]="customer.name" [ngModelOptions]="{standalone: true}" required />
       </div>
       <div class="form-group">
         <strong><label for="Cpf" class="control-label">CPF</label></strong>
-        <input id="Cpf" class="form-control" required />
+        <input id="Cpf" class="form-control" [(ngModel)]="customer.cpf" [ngModelOptions]="{standalone: true}" required />
       </div>
       <div class="form-group">
         <strong><label for="Email" class="control-label">E-mail</label></strong>
-        <input type="email" id="Email" class="form-control" required />
+        <input type="email" id="Email" class="form-control" [(ngModel)]="customer.email" [ngModelOptions]="{standalone: true}" required />
       </div>
       <div class="form-group col-md-6">
         <strong><label for="PhoneNumber" class="control-label">Telefone fixo</label></strong>
-        <input id="PhoneNumber" class="form-control" />
+        <input id="PhoneNumber" class="form-control" [(ngModel)]="customer.phoneNumber" [ngModelOptions]="{standalone: true}" />
       </div>
       <div class="form-group col-md-6">
         <strong><label for="MobileNumber" class="control-label">Telefone celular</label></strong>
-        <input id="MobileNumber" class="form-control" required />
+        <input id="MobileNumber" class="form-control" [(ngModel)]="customer.mobileNumber" [ngModelOptions]="{standalone: true}" required />
       </div>
       <div class="form-group">
         <strong><label for="Cep" class="control-label">CEP</label></strong>
-        <input id="Cep" #Cep class="form-control" (blur)="searchCep()" required />
+        <input id="Cep" #Cep class="form-control" (blur)="searchCep()" [(ngModel)]="customer.cep" [ngModelOptions]="{standalone: true}" required />
       </div>
       <div class="form-group">
         <strong><label for="Street" class="control-label">Logradouro</label></strong>
-        <input id="Street" #Street class="form-control" readonly />
+        <input id="Street" #Street class="form-control" [(ngModel)]="customer.street" [ngModelOptions]="{standalone: true}" readonly />
       </div>
       <div class="form-group col-md-6">
         <strong><label for="StreetNumber" class="control-label">Número</label></strong>
-        <input id="StreetNumber" #StreetNumber class="form-control" required />
+        <input id="StreetNumber" #StreetNumber class="form-control" [(ngModel)]="customer.streetNumber" [ngModelOptions]="{standalone: true}" required />
       </div>
       <div class="form-group col-md-6">
         <strong><label for="StreetComplement" class="control-label">Complemento</label></strong>
-        <input id="StreetComplement" #StreetComplement class="form-control" />
+        <input id="StreetComplement" #StreetComplement class="form-control" [(ngModel)]="customer.streetComplement" [ngModelOptions]="{standalone: true}" />
       </div>
       <div class="form-group">
         <strong><label for="Neighborhood" class="control-label">Bairro</label></strong>
-        <input id="Neighborhood" #Neighborhood class="form-control" readonly />
+        <input id="Neighborhood" #Neighborhood class="form-control" [(ngModel)]="customer.neighborhood" [ngModelOptions]="{standalone: true}" readonly />
       </div>
       <div class="form-group col-md-10">
         <strong><label for="City" class="control-label">Cidade</label></strong>
-        <input id="City" #City class="form-control" readonly />
+        <input id="City" #City class="form-control" [(ngModel)]="customer.city" [ngModelOptions]="{standalone: true}" readonly />
       </div>
       <div class="form-group col-md-2">
         <strong><label for="State" class="control-label">UF</label></strong>
-        <input id="State" #State class="form-control" readonly />
+        <input id="State" #State class="form-control" [(ngModel)]="customer.state" [ngModelOptions]="{standalone: true}" readonly />
       </div>
     </div>
   </form>

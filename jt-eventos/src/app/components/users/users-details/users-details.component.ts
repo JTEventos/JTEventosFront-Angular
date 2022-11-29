@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { User } from 'src/app/classes/users/user';
 import { UsersFormComponent } from '../users-form/users-form.component';
 
 @Component({
@@ -9,17 +10,9 @@ import { UsersFormComponent } from '../users-form/users-form.component';
   providers: [NgbModalConfig, NgbModal]
 })
 export class UsersDetailsComponent implements OnInit {
-  title = 'Detalhes do usuário';
+  user = new User();
 
-  constructor(
-    private modalService: NgbModal,
-    public activeModal: NgbActiveModal
-  ) { }
-
-  editUser() {
-    const modalRef = this.modalService.open(UsersFormComponent, { centered: true });
-    modalRef.componentInstance.title = 'Edição';
-  }
+  constructor() { }
 
   ngOnInit(): void { }
 }

@@ -29,33 +29,33 @@ const routes: Routes = [
 
   // Users routes
   { path: 'users', component: UsersTableComponent },
-  { path: 'create', component: UsersFormComponent },
-  { path: 'edit/{:id}', component: UsersFormComponent },
-  { path: 'details/{:id}', component: UsersDetailsComponent },
+  { path: 'users/create', component: UsersFormComponent },
+  { path: 'users/edit/:id', component: UsersFormComponent },
+  { path: 'users/details/:id', component: UsersDetailsComponent },
 
   // Customers routes
   { path: 'customers', component: CustomersTableComponent },
-  { path: 'create', component: CustomersFormComponent },
-  { path: 'edit/{:id}', component: CustomersFormComponent },
-  { path: 'details/{:id}', component: CustomersDetailsComponent },
+  { path: 'customers/create', component: CustomersFormComponent },
+  { path: 'customers/edit/:id', component: CustomersFormComponent },
+  { path: 'customers/details/:id', component: CustomersDetailsComponent },
 
   // Establishments routes
   { path: 'establishments', component: EstablishmentsTableComponent },
-  { path: 'create', component: EstablishmentsFormComponent },
-  { path: 'edit/{:id}', component: EstablishmentsFormComponent },
-  { path: 'details/{:id}', component: EstablishmentsDetailsComponent },
+  { path: 'establishments/create', component: EstablishmentsFormComponent },
+  { path: 'establishments/edit/:id', component: EstablishmentsFormComponent },
+  { path: 'establishments/details/:id', component: EstablishmentsDetailsComponent },
 
   // Events routes
   { path: 'events', component: EventsTableComponent },
-  { path: 'create', component: EventsFormComponent },
-  { path: 'edit/{:id}', component: EventsFormComponent },
-  { path: 'details/{:id}', component: EventsDetailsComponent },
+  { path: 'events/create', component: EventsFormComponent },
+  { path: 'events/edit/:id', component: EventsFormComponent },
+  { path: 'events/details/:id', component: EventsDetailsComponent },
 
   // Event Types routes
   { path: 'event-types', component: EventTypesTableComponent },
-  { path: 'create', component: EventTypesFormComponent },
-  { path: 'edit/{:id}', component: EventTypesFormComponent },
-  { path: 'details/{:id}', component: EventTypesDetailsComponent },
+  { path: 'event-types/create', component: EventTypesFormComponent },
+  { path: 'event-types/edit/:id', component: EventTypesFormComponent },
+  { path: 'event-types/details/:id', component: EventTypesDetailsComponent },
 
   // Page Not Found
   { path: '**', component: PageNotFoundComponent },

@@ -24,13 +24,13 @@ export class CustomerApiService {
   findById(id: number) {
   }
 
-  createEventType(customer: Customer): Observable<Customer> {
+  createCustomer(customer: Customer): Observable<Customer> {
     return this.http.post<Customer>(this.baseApi, customer, httpOptions);
   }
 
-  updateEventType(id: number, customer: Customer) {
+  updateCustomer(id: number, customer: Customer) {
   }
 
-  deleteEventType(id: number) {
+  deleteCustomer(id: number) {
   }
 }

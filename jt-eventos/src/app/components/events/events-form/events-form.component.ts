@@ -1,16 +1,21 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { NgbActiveModal, NgbCalendar, NgbDate, NgbDateParserFormatter, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
+import { NgbCalendar, NgbDate, NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.component';
 import { ToastsService } from 'src/app/services/toasts/toasts.service';
+import { Event } from 'src/app/classes/events/event';
+import { EventApiService } from 'src/app/services/events/event-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events-form',
   templateUrl: './events-form.component.html',
   styleUrls: ['./events-form.component.css', '../../../../styles.css'],
-  providers: [NgbModalConfig, NgbModal]
 })
 export class EventsFormComponent implements OnInit {
-	@Input() title: any;
+	title = 'Cadastro';
+  id!: number;
+  event = new Event();
+
 	hoveredDate: NgbDate | null = null;
 
 	fromDate: NgbDate | null;
@@ -21,7 +26,8 @@ export class EventsFormComponent implements OnInit {
     private modalService: NgbModal,
     private calendar: NgbCalendar,
     public formatter: NgbDateParserFormatter,
-    private activeModal: NgbActiveModal
+    private eventService: EventApiService,
+    private router: Router
   ) {
 		this.fromDate = calendar.getToday();
 		this.toDate = calendar.getNext(calendar.getToday(), 'd', 1);
@@ -30,13 +36,21 @@ export class EventsFormComponent implements OnInit {
 	cancel() {
 		const modalRef = this.modalService.open(CancelModalComponent);
     modalRef.componentInstance.cancelData.subscribe(() => {
-      this.activeModal.close();
+      this.router.navigate(['/events'])
     })
 	}
 
   save() {
-    this.activeModal.close();
-    this.toastService.showSuccess('Cadastro realizado com sucesso.');
+    if (!this.id) {
+      this.eventService.createEvent(this.event).subscribe((event) => {
+        this.event = new Event();
+        this.router.navigate(['/events']);
+        this.toastService.showSuccess('Cadastro realizado com sucesso.');
+      });
+    } else {
+      this.eventService.updateEvent(this.id, this.event);
+      this.toastService.showSuccess('Edição realizada com sucesso.');
+    }
   }
 
 	onDateSelection(date: NgbDate) {

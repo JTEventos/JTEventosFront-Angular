@@ -1,133 +1,51 @@
-<!-- <div class="modal-header">
-  <h5 class="modal-title" id="modal-basic-title">{{ title }} de evento</h5>
-</div>
-<div class="modal-body">
-  <div class="row">
-    <form>
-      <div class="row g-1 mx-auto">
-        <div class="form-group">
-          <strong><label for="EventTypeId" class="control-label">Tipo de Evento</label></strong>
-          <select id="EventTypeId" class="form-select">
-            <option selected disabled>Selecione</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <strong><label for="CustomerId" class="control-label">Cliente</label></strong>
-          <select id="CustomerId" class="form-select">
-            <option selected disabled>Selecione</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <strong><label for="EstablishmentId" class="control-label">Estabelecimento</label></strong>
-          <select id="EstablishmentId" class="form-select">
-            <option selected disabled>Selecione</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <strong><label for="Description" class="control-label">Descrição</label></strong>
-          <input id="Description" class="form-control" />
-        </div>
-
-        <div class="form-group col-md-6">
-          <strong><label for="StartDate" class="control-label">Data inicial</label></strong>
-          <div class="dp-hidden position-absolute">
-            <div class="input-group">
-              <input name="datepicker" class="form-control" ngbDatepicker #datepicker="ngbDatepicker" [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [startDate]="fromDate!" tabindex="-1" />
-              <ng-template #t let-date let-focused="focused">
-                <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)" [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">{{ date.day }}</span>
-              </ng-template>
-            </div>
-          </div>
-          <div class="input-group">
-            <input #dpFromDate class="form-control" name="dpFromDate" [value]="formatter.format(fromDate)" (input)="fromDate = validateInput(fromDate, dpFromDate.value)" />
-            <button class="btn btn-outline-secondary" (click)="datepicker.toggle()" type="button">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
-                <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
-                <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div class="form-group col-md-6">
-            <strong><label for="FinishDate" class="control-label">Data final</label></strong>
-            <div class="input-group">
-              <input #dpToDate class="form-control" name="dpToDate" [value]="formatter.format(toDate)" (input)="toDate = validateInput(toDate, dpToDate.value)" />
-              <button class="btn btn-outline-secondary" (click)="datepicker.toggle()" type="button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
-                  <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
-                  <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-                </svg>
-              </button>
-            </div>
-        </div>
-
-        <div class="form-group">
-          <strong><label for="InviteList" class="control-label">Lista de convidados</label></strong>
-          <textarea id="InviteList" class="form-control"></textarea>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="cancel()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-      <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-    </svg>&nbsp;
-    Cancelar
-  </button>
-  <button type="button" class="btn btn-outline-success" (click)="save()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
-      <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
-    </svg>&nbsp;
-    Salvar evento
-  </button>
-</div> -->
-
 <div class="row">
   <form>
     <div class="btn-toolbar" role="toolbar">
-      <button type="button" class="btn btn-outline-dark" (click)="cancel()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-        </svg>&nbsp;
-        Cancelar
-      </button>
+      <div class="btn-group me-2" role="group">
+        <button type="button" class="btn btn-outline-success" (click)="save()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+          </svg>&nbsp;
+          Salvar
+        </button>
+      </div>
 
-      <button type="button" class="btn btn-outline-success" (click)="save()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
-          <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
-        </svg>&nbsp;
-        Salvar evento
-      </button>
+      <div class="btn-group me-2" role="group">
+        <button type="button" class="btn btn-outline-dark" (click)="cancel()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+          </svg>&nbsp;
+          Cancelar
+        </button>
+      </div>
 
       <h1 class="position-absolute start-50 translate-middle-x">{{ title }} de eventos</h1>
     </div>
 
     <hr />
 
-    <div class="row g-1 mx-auto">
+    <div class="col-md-5 row g-1 mx-auto">
       <div class="form-group">
         <strong><label for="EventTypeId" class="control-label">Tipo de Evento</label></strong>
-        <select id="EventTypeId" class="form-select">
+        <select id="EventTypeId" [(ngModel)]="event.eventTypeId" [ngModelOptions]="{standalone: true}" class="form-select">
           <option selected disabled>Selecione</option>
         </select>
       </div>
       <div class="form-group">
         <strong><label for="CustomerId" class="control-label">Cliente</label></strong>
-        <select id="CustomerId" class="form-select">
+        <select id="CustomerId" [(ngModel)]="event.customerId" [ngModelOptions]="{standalone: true}" class="form-select">
           <option selected disabled>Selecione</option>
         </select>
       </div>
       <div class="form-group">
         <strong><label for="EstablishmentId" class="control-label">Estabelecimento</label></strong>
-        <select id="EstablishmentId" class="form-select">
+        <select id="EstablishmentId" [(ngModel)]="event.establishmentId" [ngModelOptions]="{standalone: true}" class="form-select">
           <option selected disabled>Selecione</option>
         </select>
       </div>
       <div class="form-group">
         <strong><label for="Description" class="control-label">Descrição</label></strong>
-        <input id="Description" class="form-control" />
+        <input id="Description" class="form-control" [(ngModel)]="event.description" [ngModelOptions]="{standalone: true}" required />
       </div>
 
       <!-- Datepicker -->
@@ -142,7 +60,7 @@
           </div>
         </div>
         <div class="input-group">
-          <input #dpFromDate class="form-control" name="dpFromDate" [value]="formatter.format(fromDate)" (input)="fromDate = validateInput(fromDate, dpFromDate.value)" />
+          <input [(ngModel)]="event.startDate" [ngModelOptions]="{standalone: true}" #dpFromDate class="form-control" name="dpFromDate" [value]="formatter.format(fromDate)" (input)="fromDate = validateInput(fromDate, dpFromDate.value)" required />
           <button class="btn btn-outline-secondary" (click)="datepicker.toggle()" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
               <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
@@ -154,7 +72,7 @@
       <div class="form-group col-md-6">
           <strong><label for="FinishDate" class="control-label">Data final</label></strong>
           <div class="input-group">
-            <input #dpToDate class="form-control" name="dpToDate" [value]="formatter.format(toDate)" (input)="toDate = validateInput(toDate, dpToDate.value)" />
+            <input [(ngModel)]="event.finishDate" [ngModelOptions]="{standalone: true}" #dpToDate class="form-control" name="dpToDate" [value]="formatter.format(toDate)" (input)="toDate = validateInput(toDate, dpToDate.value)" required />
             <button class="btn btn-outline-secondary" (click)="datepicker.toggle()" type="button">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
                 <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
@@ -166,7 +84,7 @@
 
       <div class="form-group">
         <strong><label for="InviteList" class="control-label">Lista de convidados</label></strong>
-        <textarea id="InviteList" class="form-control"></textarea>
+        <textarea [(ngModel)]="event.inviteList" [ngModelOptions]="{standalone: true}" id="InviteList" class="form-control"></textarea>
       </div>
     </div>
   </form>

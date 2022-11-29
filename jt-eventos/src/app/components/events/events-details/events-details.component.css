@@ -1,15 +1,10 @@
 html, body, h1, h2, h3, h4, p, img { margin: 0; }
 
-h1 {
+.h1 {
   font-size: 18pt;
   font-weight: 500;
   margin-bottom: 0.5cm;
   text-align: center;
-}
-
-h2 {
-  font-size: 16pt;
-  font-weight: 500;
 }
 
 .report { font-size: 12pt; }
