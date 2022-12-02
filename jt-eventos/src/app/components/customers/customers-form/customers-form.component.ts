@@ -4,7 +4,7 @@ import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.com
 import { ToastsService } from 'src/app/services/toasts/toasts.service';
 import { Customer } from 'src/app/classes/customers/customer';
 import { CustomerApiService } from 'src/app/services/customers/customer-api.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-customers-form',
@@ -16,19 +16,12 @@ export class CustomersFormComponent implements OnInit {
   id!: number;
   customer = new Customer();
 
-  @ViewChild('Cep', { static: false }) cep: ElementRef<HTMLInputElement> = {} as ElementRef;
-  @ViewChild('Street', { static: false }) street: ElementRef<HTMLInputElement> = {} as ElementRef;
-  @ViewChild('StreeetNumber', { static: false }) streetNumber: ElementRef<HTMLInputElement> = {} as ElementRef;
-  @ViewChild('StreeetComplement', { static: false }) streetComplement: ElementRef<HTMLInputElement> = {} as ElementRef;
-  @ViewChild('Neighborhood', { static: false }) neighborhood: ElementRef<HTMLInputElement> = {} as ElementRef;
-  @ViewChild('City', { static: false }) city: ElementRef<HTMLInputElement> = {} as ElementRef;
-  @ViewChild('State', { static: false }) state: ElementRef<HTMLInputElement> = {} as ElementRef;
-
   constructor(
     private toastService: ToastsService,
     private modalService: NgbModal,
     private customerService: CustomerApiService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
 	cancel() {
@@ -46,25 +39,28 @@ export class CustomersFormComponent implements OnInit {
         this.toastService.showSuccess('Cadastro realizado com sucesso.');
       });
     } else {
-      this.customerService.updateCustomer(this.id, this.customer);
-      this.toastService.showSuccess('Edição realizada com sucesso.');
+      this.customerService.updateCustomer(this.id, this.customer).subscribe((data) => {
+        this.customer = data;
+        this.router.navigate(['/customers']);
+        this.toastService.showSuccess('Edição realizada com sucesso.');
+      });
     }
   }
 
   clearForm() {
-    this.cep.nativeElement.value = ('');
-    this.street.nativeElement.value = ('');
-    this.neighborhood.nativeElement.value = ('');
-    this.city.nativeElement.value = ('');
-    this.state.nativeElement.value = ('');
+    this.customer.cep = '';
+    this.customer.street = '';
+    this.customer.neighborhood = '';
+    this.customer.city = '';
+    this.customer.state = '';
   }
 
   myCallback(body: any) {
     if (!('erro' in body)) {
-      this.street.nativeElement.value = (body.logradouro);
-      this.neighborhood.nativeElement.value = (body.bairro);
-      this.city.nativeElement.value = (body.localidade);
-      this.state.nativeElement.value = (body.uf);
+      this.customer.street = body.logradouro;
+      this.customer.neighborhood = body.bairro;
+      this.customer.city = body.localidade;
+      this.customer.state = body.uf;
     } else {
       this.toastService.showDanger('CEP informado não encontrado.')
       this.clearForm();
@@ -72,7 +68,7 @@ export class CustomersFormComponent implements OnInit {
   }
 
   async searchCep() {
-    var cep = this.cep.nativeElement.value.replace(/\D/g, '');
+    var cep = this.customer.cep.replace(/\D/g, '');
     if (cep != '') {
       var validateCep = /^[0-9]{8}$/;
       if (validateCep.test(cep)) {
@@ -87,6 +83,14 @@ export class CustomersFormComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    if (this.id) {
+      this.title = "Edição";
+      this.customerService.findById(this.id).subscribe((data) => {
+        this.customer = data;
+      });
+    }
+  }
 }
 

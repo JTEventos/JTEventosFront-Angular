@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Customer } from 'src/app/classes/customers/customer';
 import { DeleteModalComponent } from 'src/app/components/modals/delete-modal/delete-modal.component';
+import { CustomerApiService } from 'src/app/services/customers/customer-api.service';
 import { ToastsService } from 'src/app/services/toasts/toasts.service';
 
 @Component({
@@ -10,20 +12,34 @@ import { ToastsService } from 'src/app/services/toasts/toasts.service';
   styleUrls: ['./customers-details.component.css', '../../../../styles.css'],
 })
 export class CustomersDetailsComponent implements OnInit {
+  id!: number;
   customer = new Customer();
 
   constructor(
     private toastService: ToastsService,
     private modalService: NgbModal,
+    private customerService: CustomerApiService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
-  openDelete() {
+  openDelete(id: number) {
     const modalRef = this.modalService.open(DeleteModalComponent);
     modalRef.componentInstance.description = 'cliente';
     modalRef.componentInstance.deleteData.subscribe(() => {
-      this.toastService.showSuccess('Cadastro excluído com sucesso.');
+      this.customerService.deleteCustomer(id).subscribe((data) => {
+        this.router.navigate(['/customers']);
+        this.toastService.showSuccess('Cadastro excluído com sucesso.');
+      })
     })
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    if (this.id) {
+      this.customerService.findById(this.id).subscribe((data) => {
+        this.customer = data;
+      });
+    }
+  }
 }

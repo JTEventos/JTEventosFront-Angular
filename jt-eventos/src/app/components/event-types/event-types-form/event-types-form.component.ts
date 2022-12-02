@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.component';
 import { ToastsService } from 'src/app/services/toasts/toasts.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EventTypeApiService } from 'src/app/services/event-types/event-type-api.service';
 import { EventType } from 'src/app/classes/event-types/event-type';
 
@@ -20,7 +20,8 @@ export class EventTypesFormComponent implements OnInit {
     private toastService: ToastsService,
     private modalService: NgbModal,
     private eventTypeService: EventTypeApiService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
 	cancel() {
@@ -38,17 +39,21 @@ export class EventTypesFormComponent implements OnInit {
         this.toastService.showSuccess('Cadastro realizado com sucesso.');
       });
     } else {
-      this.eventTypeService.updateEventType(this.id, this.eventType);
-      this.toastService.showSuccess('Edição realizada com sucesso.');
+      this.eventTypeService.updateEventType(this.id, this.eventType).subscribe((data) => {
+        this.eventType = data;
+        this.router.navigate(['/event-types']);
+        this.toastService.showSuccess('Edição realizada com sucesso.');
+      });
     }
   }
 
   ngOnInit(): void {
-    // this.id = +this.route.snapshot.params['id'];
-    // if (this.id) {
-    //   this.eventType = Object.assign({},
-    //     this.eventType = this.eventTypeService.findById(this.id)
-    //   );
-    // }
+    this.id = this.route.snapshot.params['id'];
+    if (this.id) {
+      this.title = "Edição";
+      this.eventTypeService.findById(this.id).subscribe((data) => {
+        this.eventType = data;
+      });
+    }
   }
 }

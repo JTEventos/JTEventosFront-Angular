@@ -3,7 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.component';
 import { ToastsService } from 'src/app/services/toasts/toasts.service';
 import { UserApiService } from 'src/app/services/users/user-api.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/classes/users/user';
 
 @Component({
@@ -23,7 +23,8 @@ export class UsersFormComponent implements OnInit {
     private toastService: ToastsService,
     private modalService: NgbModal,
     private userService: UserApiService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
 	cancel() {
@@ -36,19 +37,26 @@ export class UsersFormComponent implements OnInit {
   save() {
     if (!this.id) {
       this.userService.createUser(this.user).subscribe((user) => {
-        if (this.password.nativeElement.value !== this.confirmPassword.nativeElement.value) {
-          this.toastService.showDanger('As senhas cadastradas devem ser iguais.');
-        }
-
         this.user = new User();
         this.router.navigate(['/users']);
         this.toastService.showSuccess('Cadastro realizado com sucesso.');
       });
     } else {
-      this.userService.updateUser(this.id, this.user);
-      this.toastService.showSuccess('Edição realizada com sucesso.');
+      this.userService.updateUser(this.id, this.user).subscribe((data) => {
+        this.user = data;
+        this.router.navigate(['/users']);
+        this.toastService.showSuccess('Edição realizada com sucesso.');
+      });
     }
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    if (this.id) {
+      this.title = "Edição";
+      this.userService.findById(this.id).subscribe((data) => {
+        this.user = data;
+      });
+    }
+  }
 }

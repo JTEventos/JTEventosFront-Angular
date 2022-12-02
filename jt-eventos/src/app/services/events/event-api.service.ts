@@ -21,16 +21,22 @@ export class EventApiService {
     return this.http.get<Event[]>(this.baseApi);
   }
 
-  findById(id: number) {
+  findById(id: number): Observable<Event> {
+    const uri = `${this.baseApi}/${id}`;
+    return this.http.get<Event>(uri);
   }
 
   createEvent(event: Event): Observable<Event> {
     return this.http.post<Event>(this.baseApi, event, httpOptions);
   }
 
-  updateEvent(id: number, event: Event) {
+  updateEvent(id: number, event: Event): Observable<Event> {
+    const uri = `${this.baseApi}/${id}`;
+    return this.http.put<Event>(uri, event, httpOptions);
   }
 
-  deleteEvent(id: number) {
+  deleteEvent(id: number): Observable<Event> {
+    const uri = `${this.baseApi}/${id}`;
+    return this.http.delete<Event>(uri);
   }
 }

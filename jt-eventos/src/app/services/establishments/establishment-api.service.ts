@@ -21,16 +21,22 @@ export class EstablishmentApiService {
     return this.http.get<Establishment[]>(this.baseApi);
   }
 
-  findById(id: number) {
+  findById(id: number): Observable<Establishment> {
+    const uri = `${this.baseApi}/${id}`;
+    return this.http.get<Establishment>(uri);
   }
 
   createEstablishment(establishment: Establishment): Observable<Establishment> {
     return this.http.post<Establishment>(this.baseApi, establishment, httpOptions);
   }
 
-  updateEstablishment(id: number, establishment: Establishment) {
+  updateEstablishment(id: number, establishment: Establishment): Observable<Establishment> {
+    const uri = `${this.baseApi}/${id}`;
+    return this.http.put<Establishment>(uri, establishment, httpOptions);
   }
 
-  deleteEstablishment(id: number) {
+  deleteEstablishment(id: number): Observable<Establishment> {
+    const uri = `${this.baseApi}/${id}`;
+    return this.http.delete<Establishment>(uri);
   }
 }

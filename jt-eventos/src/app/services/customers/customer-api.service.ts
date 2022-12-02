@@ -21,16 +21,22 @@ export class CustomerApiService {
     return this.http.get<Customer[]>(this.baseApi);
   }
 
-  findById(id: number) {
+  findById(id: number): Observable<Customer> {
+    const uri = `${this.baseApi}/${id}`;
+    return this.http.get<Customer>(uri);
   }
 
   createCustomer(customer: Customer): Observable<Customer> {
     return this.http.post<Customer>(this.baseApi, customer, httpOptions);
   }
 
-  updateCustomer(id: number, customer: Customer) {
+  updateCustomer(id: number, customer: Customer): Observable<Customer> {
+    const uri = `${this.baseApi}/${id}`;
+    return this.http.put<Customer>(uri, customer, httpOptions);
   }
 
-  deleteCustomer(id: number) {
+  deleteCustomer(id: number): Observable<Customer> {
+    const uri = `${this.baseApi}/${id}`;
+    return this.http.delete<Customer>(uri);
   }
 }

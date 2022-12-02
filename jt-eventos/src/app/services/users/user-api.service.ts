@@ -21,13 +21,17 @@ export class UserApiService {
     return this.http.get<User[]>(this.baseApi);
   }
 
-  findById(id: number) {
+  findById(id: number): Observable<User> {
+    const uri = `${this.baseApi}/${id}`;
+    return this.http.get<User>(uri);
   }
 
   createUser(user: User): Observable<User> {
     return this.http.post<User>(this.baseApi, user, httpOptions);
   }
 
-  updateUser(id: number, user: User) {
+  updateUser(id: number, user: User): Observable<User> {
+    const uri = `${this.baseApi}/${id}`;
+    return this.http.put<User>(uri, uri, httpOptions);
   }
 }
