@@ -5,6 +5,7 @@ import { ToastsService } from 'src/app/services/toasts/toasts.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventTypeApiService } from 'src/app/services/event-types/event-type-api.service';
 import { EventType } from 'src/app/classes/event-types/event-type';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-event-types-form',
@@ -24,25 +25,31 @@ export class EventTypesFormComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
+  navigateToTable() {
+    return this.router.navigate(['/event-types']);
+  }
+
 	cancel() {
 		const modalRef = this.modalService.open(CancelModalComponent);
     modalRef.componentInstance.cancelData.subscribe(() => {
-      this.router.navigate(['/event-types']);
+      this.navigateToTable();
     })
 	}
 
   save() {
     if (!this.id) {
-      this.eventTypeService.createEventType(this.eventType).subscribe((eventType) => {
-        this.eventType = new EventType();
-        this.router.navigate(['/event-types']);
-        this.toastService.showSuccess('Cadastro realizado com sucesso.');
+      this.eventTypeService.createEventType(this.eventType).subscribe((res) => {
+        this.toastService.showSuccess(res.body.msg);
+        this.navigateToTable();
+      }, (err: HttpErrorResponse) => {
+        this.toastService.showDanger(err.error[0].msg);
       });
     } else {
-      this.eventTypeService.updateEventType(this.id, this.eventType).subscribe((data) => {
-        this.eventType = data;
-        this.router.navigate(['/event-types']);
-        this.toastService.showSuccess('Edição realizada com sucesso.');
+      this.eventTypeService.updateEventType(this.id, this.eventType).subscribe((res) => {
+        this.toastService.showSuccess(res.body.msg);
+        this.navigateToTable();
+      }, (err: HttpErrorResponse) => {
+        this.toastService.showDanger(err.error[0].msg);
       });
     }
   }

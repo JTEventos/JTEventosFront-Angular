@@ -1,13 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Establishment } from 'src/app/classes/establishments/establishment';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  })
-}
+let headers = new HttpHeaders();
+headers = headers.set('Content-Type', 'application/json');
 
 @Injectable({
   providedIn: 'root'
@@ -26,17 +23,17 @@ export class EstablishmentApiService {
     return this.http.get<Establishment>(uri);
   }
 
-  createEstablishment(establishment: Establishment): Observable<Establishment> {
-    return this.http.post<Establishment>(this.baseApi, establishment, httpOptions);
+  createEstablishment(establishment: Establishment): Observable<HttpResponse<any>> {
+    return this.http.post<any>(this.baseApi, establishment, { headers, observe: 'response' }).pipe(map((res => res)));
   }
 
-  updateEstablishment(id: number, establishment: Establishment): Observable<Establishment> {
+  updateEstablishment(id: number, establishment: Establishment): Observable<HttpResponse<any>> {
     const uri = `${this.baseApi}/${id}`;
-    return this.http.put<Establishment>(uri, establishment, httpOptions);
+    return this.http.put<any>(uri, establishment, { headers, observe: 'response' }).pipe(map((res => res)));
   }
 
-  deleteEstablishment(id: number): Observable<Establishment> {
+  deleteEstablishment(id: number): Observable<HttpResponse<any>> {
     const uri = `${this.baseApi}/${id}`;
-    return this.http.delete<Establishment>(uri);
+    return this.http.delete<any>(uri, { headers, observe: 'response' }).pipe(map((res => res)));
   }
 }

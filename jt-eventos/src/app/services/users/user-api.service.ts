@@ -1,13 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { User } from 'src/app/classes/users/user';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  })
-}
+let headers = new HttpHeaders();
+headers = headers.set('Content-Type', 'application/json');
 
 @Injectable({
   providedIn: 'root'
@@ -26,12 +23,12 @@ export class UserApiService {
     return this.http.get<User>(uri);
   }
 
-  createUser(user: User): Observable<User> {
-    return this.http.post<User>(this.baseApi, user, httpOptions);
+  createUser(user: User): Observable<HttpResponse<any>> {
+    return this.http.post<any>(this.baseApi, user, { headers, observe: 'response' }).pipe(map((res => res)));
   }
 
-  updateUser(id: number, user: User): Observable<User> {
+  updateUser(id: number, user: User): Observable<HttpResponse<any>> {
     const uri = `${this.baseApi}/${id}`;
-    return this.http.put<User>(uri, uri, httpOptions);
+    return this.http.put<any>(uri, user, { headers, observe: 'response' }).pipe(map((res => res)));
   }
 }

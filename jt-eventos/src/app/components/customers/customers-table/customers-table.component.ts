@@ -10,7 +10,6 @@ import { CustomerApiService } from 'src/app/services/customers/customer-api.serv
   styleUrls: ['./customers-table.component.css', '../../../../styles.css']
 })
 export class CustomersTableComponent implements OnInit {
-  title = "Clientes";
   searchField = '';
   list: Customer[] = [];
 

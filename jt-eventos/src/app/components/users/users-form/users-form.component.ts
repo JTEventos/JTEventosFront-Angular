@@ -1,10 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.component';
 import { ToastsService } from 'src/app/services/toasts/toasts.service';
 import { UserApiService } from 'src/app/services/users/user-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/classes/users/user';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-users-form',
@@ -16,9 +17,6 @@ export class UsersFormComponent implements OnInit {
   id!: number;
   user = new User();
 
-  @ViewChild('Password', { static: false }) password: ElementRef<HTMLInputElement> = {} as ElementRef;
-  @ViewChild('ConfirmPassword', { static: false }) confirmPassword: ElementRef<HTMLInputElement> = {} as ElementRef;
-
   constructor(
     private toastService: ToastsService,
     private modalService: NgbModal,
@@ -27,25 +25,39 @@ export class UsersFormComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
+  navigateToTable() {
+    return this.router.navigate(['/users']);
+  }
+
 	cancel() {
 		const modalRef = this.modalService.open(CancelModalComponent);
     modalRef.componentInstance.cancelData.subscribe(() => {
-      this.router.navigate(['/users']);
+      this.navigateToTable();
     })
 	}
 
   save() {
     if (!this.id) {
-      this.userService.createUser(this.user).subscribe((user) => {
-        this.user = new User();
-        this.router.navigate(['/users']);
-        this.toastService.showSuccess('Cadastro realizado com sucesso.');
+      this.userService.createUser(this.user).subscribe((res) => {
+        this.toastService.showSuccess(res.body.msg);
+        this.navigateToTable();
+      }, (err: HttpErrorResponse) => {
+        if (err.status === 400 || err.status === 401) {
+          this.toastService.showDanger(err.error.msg);
+        } else if (err.status === 404) {
+          this.toastService.showDanger(err.error[0].msg);
+        }
       });
     } else {
-      this.userService.updateUser(this.id, this.user).subscribe((data) => {
-        this.user = data;
-        this.router.navigate(['/users']);
-        this.toastService.showSuccess('Edição realizada com sucesso.');
+      this.userService.updateUser(this.id, this.user).subscribe((res) => {
+        this.toastService.showSuccess(res.body.msg);
+        this.navigateToTable();
+      }, (err: HttpErrorResponse) => {
+        if (err.status === 400 || err.status === 401) {
+          this.toastService.showDanger(err.error.msg);
+        } else if (err.status === 404) {
+          this.toastService.showDanger(err.error[0].msg);
+        }
       });
     }
   }

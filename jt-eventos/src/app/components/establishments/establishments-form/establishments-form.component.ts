@@ -5,6 +5,7 @@ import { ToastsService } from 'src/app/services/toasts/toasts.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EstablishmentApiService } from 'src/app/services/establishments/establishment-api.service';
 import { Establishment } from 'src/app/classes/establishments/establishment';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-establishments-form',
@@ -24,25 +25,31 @@ export class EstablishmentsFormComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
+  navigateToTable() {
+    return this.router.navigate(['/establishments']);
+  }
+
 	cancel() {
 		const modalRef = this.modalService.open(CancelModalComponent);
     modalRef.componentInstance.cancelData.subscribe(() => {
-      this.router.navigate(['/establishments']);
+      this.navigateToTable();
     })
 	}
 
   save() {
     if (!this.id) {
-      this.establishmentService.createEstablishment(this.establishment).subscribe((establishment) => {
-        this.establishment = new Establishment();
-        this.router.navigate(['/establishments']);
-        this.toastService.showSuccess('Cadastro realizado com sucesso.');
+      this.establishmentService.createEstablishment(this.establishment).subscribe((res) => {
+        this.toastService.showSuccess(res.body.msg);
+        this.navigateToTable();
+      }, (err: HttpErrorResponse) => {
+        this.toastService.showDanger(err.error[0].msg);
       });
     } else {
-      this.establishmentService.updateEstablishment(this.id, this.establishment).subscribe((data) => {
-        this.establishment = data;
-        this.router.navigate(['/establishments']);
-        this.toastService.showSuccess('Edição realizada com sucesso.');
+      this.establishmentService.updateEstablishment(this.id, this.establishment).subscribe((res) => {
+        this.toastService.showSuccess(res.body.msg);
+        this.navigateToTable();
+      }, (err: HttpErrorResponse) => {
+        this.toastService.showDanger(err.error[0].msg);
       });
     }
   }

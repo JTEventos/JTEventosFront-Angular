@@ -1,10 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CancelModalComponent } from '../../modals/cancel-modal/cancel-modal.component';
 import { ToastsService } from 'src/app/services/toasts/toasts.service';
 import { Customer } from 'src/app/classes/customers/customer';
 import { CustomerApiService } from 'src/app/services/customers/customer-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-customers-form',
@@ -24,25 +25,39 @@ export class CustomersFormComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
+  navigateToTable() {
+    return this.router.navigate(['/customers']);
+  }
+
 	cancel() {
 		const modalRef = this.modalService.open(CancelModalComponent);
     modalRef.componentInstance.cancelData.subscribe(() => {
-      this.router.navigate(['/customers']);
+      this.navigateToTable();
     })
 	}
 
   save() {
     if (!this.id) {
-      this.customerService.createCustomer(this.customer).subscribe((customer) => {
-        this.customer = new Customer();
-        this.router.navigate(['/customers']);
-        this.toastService.showSuccess('Cadastro realizado com sucesso.');
+      this.customerService.createCustomer(this.customer).subscribe((res) => {
+        this.toastService.showSuccess(res.body.msg);
+        this.navigateToTable();
+      }, (err: HttpErrorResponse) => {
+        if (err.status === 400) {
+          this.toastService.showDanger(err.error.msg);
+        } else if (err.status === 404) {
+          this.toastService.showDanger(err.error[0].msg);
+        }
       });
     } else {
-      this.customerService.updateCustomer(this.id, this.customer).subscribe((data) => {
-        this.customer = data;
-        this.router.navigate(['/customers']);
-        this.toastService.showSuccess('Edição realizada com sucesso.');
+      this.customerService.updateCustomer(this.id, this.customer).subscribe((res) => {
+        this.toastService.showSuccess(res.body.msg);
+        this.navigateToTable();
+      }, (err: HttpErrorResponse) => {
+        if (err.status === 400) {
+          this.toastService.showDanger(err.error.msg);
+        } else if (err.status === 404) {
+          this.toastService.showDanger(err.error[0].msg);
+        }
       });
     }
   }

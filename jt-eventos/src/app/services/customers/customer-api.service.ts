@@ -1,13 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Customer } from 'src/app/classes/customers/customer';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  })
-}
+let headers = new HttpHeaders();
+headers = headers.set('Content-Type', 'application/json');
 
 @Injectable({
   providedIn: 'root'
@@ -26,17 +23,17 @@ export class CustomerApiService {
     return this.http.get<Customer>(uri);
   }
 
-  createCustomer(customer: Customer): Observable<Customer> {
-    return this.http.post<Customer>(this.baseApi, customer, httpOptions);
+  createCustomer(customer: Customer): Observable<HttpResponse<any>> {
+    return this.http.post<any>(this.baseApi, customer, { headers, observe: 'response' }).pipe(map((res => res)));
   }
 
-  updateCustomer(id: number, customer: Customer): Observable<Customer> {
+  updateCustomer(id: number, customer: Customer): Observable<HttpResponse<any>> {
     const uri = `${this.baseApi}/${id}`;
-    return this.http.put<Customer>(uri, customer, httpOptions);
+    return this.http.put<any>(uri, customer, { headers, observe: 'response' }).pipe(map((res => res)));
   }
 
-  deleteCustomer(id: number): Observable<Customer> {
+  deleteCustomer(id: number): Observable<HttpResponse<any>> {
     const uri = `${this.baseApi}/${id}`;
-    return this.http.delete<Customer>(uri);
+    return this.http.delete<any>(uri, { headers, observe: 'response' }).pipe(map((res => res)));
   }
 }

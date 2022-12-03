@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -23,13 +24,19 @@ export class CustomersDetailsComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
+  navigateToTable() {
+    return this.router.navigate(['/customers']);
+  }
+
   openDelete(id: number) {
     const modalRef = this.modalService.open(DeleteModalComponent);
     modalRef.componentInstance.description = 'cliente';
     modalRef.componentInstance.deleteData.subscribe(() => {
-      this.customerService.deleteCustomer(id).subscribe((data) => {
-        this.router.navigate(['/customers']);
-        this.toastService.showSuccess('Cadastro excluído com sucesso.');
+      this.customerService.deleteCustomer(id).subscribe((res) => {
+        this.toastService.showSuccess(res.body.msg);
+        this.navigateToTable();
+      }, (err: HttpErrorResponse) => {
+        this.toastService.showDanger(err.error[0].msg);
       })
     })
   }

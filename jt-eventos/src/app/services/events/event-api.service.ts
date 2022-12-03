@@ -1,13 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Event } from 'src/app/classes/events/event';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  })
-}
+let headers = new HttpHeaders();
+headers = headers.set('Content-Type', 'application/json');
 
 @Injectable({
   providedIn: 'root'
@@ -26,17 +23,17 @@ export class EventApiService {
     return this.http.get<Event>(uri);
   }
 
-  createEvent(event: Event): Observable<Event> {
-    return this.http.post<Event>(this.baseApi, event, httpOptions);
+  createEvent(event: Event): Observable<HttpResponse<any>> {
+    return this.http.post<any>(this.baseApi, event, { headers, observe: 'response' }).pipe(map((res => res)));
   }
 
-  updateEvent(id: number, event: Event): Observable<Event> {
+  updateEvent(id: number, event: Event): Observable<HttpResponse<any>> {
     const uri = `${this.baseApi}/${id}`;
-    return this.http.put<Event>(uri, event, httpOptions);
+    return this.http.put<any>(uri, event, { headers, observe: 'response' }).pipe(map((res => res)));
   }
 
-  deleteEvent(id: number): Observable<Event> {
+  deleteEvent(id: number): Observable<HttpResponse<any>> {
     const uri = `${this.baseApi}/${id}`;
-    return this.http.delete<Event>(uri);
+    return this.http.delete<any>(uri, { headers, observe: 'response' }).pipe(map((res => res)));
   }
 }
