@@ -16,7 +16,7 @@
     <div class="mb-3 row">
       <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Pesquisar:</label>
       <div class="col-xs-3 col-sm-auto">
-        <input id="table-filtering-search" class="form-control" type="text" [(ngModel)]="searchField" [ngModelOptions]="{standalone: true}" />
+        <input id="table-filtering-search" class="form-control" type="search" [(ngModel)]="searchField" [ngModelOptions]="{standalone: true}" />
       </div>
     </div>
   </form>
@@ -34,11 +34,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let event of list | eventLookup: searchField">
-        <td><ngb-highlight [result]="event.description" [term]="searchField"></ngb-highlight></td>
+        <td><ngb-highlight [result]="event.eventTypeId.toString()" [term]="searchField"></ngb-highlight></td>
         <td><ngb-highlight [result]="event.customerId.toString()" [term]="searchField"></ngb-highlight></td>
         <td><ngb-highlight [result]="event.establishmentId.toString()" [term]="searchField"></ngb-highlight></td>
-        <td><ngb-highlight [result]="event.startDate" [term]="searchField"></ngb-highlight></td>
-        <td><ngb-highlight [result]="event.finishDate" [term]="searchField"></ngb-highlight></td>
+        <td><ngb-highlight [result]="event.startDate | date: 'dd/MM/yyyy'" [term]="searchField"></ngb-highlight></td>
+        <td><ngb-highlight [result]="event.finishDate | date: 'dd/MM/yyyy'" [term]="searchField"></ngb-highlight></td>
         <td>
           <a class="a-table" routerLink="/events/details/{{ event._id }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
