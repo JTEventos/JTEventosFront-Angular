@@ -68,8 +68,8 @@
     <div class="form-group">
       <strong><label class="control-label">Lista de convidados:</label></strong>
       <br>
-      <ul *ngFor="let invitees of list">
-        <li><label class="control-label">{{ invitees.inviteList }}</label></li>
+      <ul *ngFor="let invitees in splitInviteList()">
+        <li><label class="control-label">{{ invitees }}</label></li>
       </ul>
     </div>
   </div>
@@ -134,8 +134,8 @@
   <div class="row no-gutters items-group">
     <div class="col">
       <p class="report label">Lista de convidados:</p>
-      <ul class="disclaimer">
-        <li class="report">{{ event.inviteList }}</li>
+      <ul class="disclaimer" *ngFor="let invitees in splitInviteList()">
+        <li class="report">{{ invitees }}</li>
       </ul>
     </div>
   </div>

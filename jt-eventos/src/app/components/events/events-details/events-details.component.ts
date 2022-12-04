@@ -43,6 +43,10 @@ export class EventsDetailsComponent implements OnInit {
     })
   }
 
+  splitInviteList() {
+    return this.event.inviteList.split(', ').toString();
+  }
+
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     if (this.id) {

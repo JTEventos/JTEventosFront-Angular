@@ -7,6 +7,7 @@ import { EstablishmentApiService } from 'src/app/services/establishments/establi
 import { Establishment } from 'src/app/classes/establishments/establishment';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ValidateError } from 'src/app/utils/validate-error';
+import { ViaCepService } from 'src/app/services/via-cep/via-cep.service';
 
 @Component({
   selector: 'app-establishments-form',
@@ -24,7 +25,8 @@ export class EstablishmentsFormComponent implements OnInit {
     private establishmentService: EstablishmentApiService,
     private router: Router,
     private route: ActivatedRoute,
-    private utils: ValidateError
+    private utils: ValidateError,
+    public viaCep: ViaCepService
   ) {}
 
   navigateToTable() {
@@ -53,42 +55,6 @@ export class EstablishmentsFormComponent implements OnInit {
       }, (err: HttpErrorResponse) => {
         this.utils.validateError(err);
       });
-    }
-  }
-
-  clearForm() {
-    this.establishment.cep = '';
-    this.establishment.street = '';
-    this.establishment.neighborhood = '';
-    this.establishment.city = '';
-    this.establishment.state = '';
-  }
-
-  myCallback(body: any) {
-    if (!('erro' in body)) {
-      this.establishment.street = body.logradouro;
-      this.establishment.neighborhood = body.bairro;
-      this.establishment.city = body.localidade;
-      this.establishment.state = body.uf;
-    } else {
-      this.toastService.showDanger('CEP informado não encontrado.')
-      this.clearForm();
-    }
-  }
-
-  async searchCep() {
-    var cep = this.establishment.cep.replace(/\D/g, '');
-    if (cep != '') {
-      var validateCep = /^[0-9]{8}$/;
-      if (validateCep.test(cep)) {
-        const body = await (await fetch(`https://viacep.com.br/ws/${cep}/json`)).json();
-        this.myCallback(body);
-      } else {
-        this.toastService.showWarning('CEP informado com formato inválido.')
-        this.clearForm();
-      }
-    } else {
-      this.clearForm();
     }
   }
 

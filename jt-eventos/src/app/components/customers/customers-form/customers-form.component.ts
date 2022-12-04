@@ -7,6 +7,7 @@ import { CustomerApiService } from 'src/app/services/customers/customer-api.serv
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ValidateError } from 'src/app/utils/validate-error';
+import { ViaCepService } from 'src/app/services/via-cep/via-cep.service';
 
 @Component({
   selector: 'app-customers-form',
@@ -24,7 +25,8 @@ export class CustomersFormComponent implements OnInit {
     private customerService: CustomerApiService,
     private router: Router,
     private route: ActivatedRoute,
-    private utils: ValidateError
+    private utils: ValidateError,
+    public viaCep: ViaCepService
   ) { }
 
   navigateToTable() {
@@ -53,42 +55,6 @@ export class CustomersFormComponent implements OnInit {
       }, (err: HttpErrorResponse) => {
         this.utils.validateError(err);
       });
-    }
-  }
-
-  clearForm() {
-    this.customer.cep = '';
-    this.customer.street = '';
-    this.customer.neighborhood = '';
-    this.customer.city = '';
-    this.customer.state = '';
-  }
-
-  myCallback(body: any) {
-    if (!('erro' in body)) {
-      this.customer.street = body.logradouro;
-      this.customer.neighborhood = body.bairro;
-      this.customer.city = body.localidade;
-      this.customer.state = body.uf;
-    } else {
-      this.toastService.showDanger('CEP informado não encontrado.')
-      this.clearForm();
-    }
-  }
-
-  async searchCep() {
-    var cep = this.customer.cep.replace(/\D/g, '');
-    if (cep != '') {
-      var validateCep = /^[0-9]{8}$/;
-      if (validateCep.test(cep)) {
-        const body = await (await fetch(`https://viacep.com.br/ws/${cep}/json`)).json();
-        this.myCallback(body);
-      } else {
-        this.toastService.showWarning('CEP informado com formato inválido.')
-        this.clearForm();
-      }
-    } else {
-      this.clearForm();
     }
   }
 

@@ -31,7 +31,7 @@
       </div>
       <div class="form-group">
         <strong><label for="Cep" class="control-label">CEP</label></strong>
-        <input type="text" id="Cep" #Cep class="form-control" (blur)="searchCep()" [(ngModel)]="establishment.cep" [ngModelOptions]="{standalone: true}" required />
+        <input type="text" id="Cep" #Cep class="form-control" (blur)="viaCep.searchCep(establishment)" [(ngModel)]="establishment.cep" [ngModelOptions]="{standalone: true}" required />
       </div>
       <div class="form-group">
         <strong><label for="Street" class="control-label">Logradouro</label></strong>
