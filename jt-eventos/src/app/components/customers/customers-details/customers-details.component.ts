@@ -6,6 +6,7 @@ import { Customer } from 'src/app/classes/customers/customer';
 import { DeleteModalComponent } from 'src/app/components/modals/delete-modal/delete-modal.component';
 import { CustomerApiService } from 'src/app/services/customers/customer-api.service';
 import { ToastsService } from 'src/app/services/toasts/toasts.service';
+import { ValidateError } from 'src/app/utils/validate-error';
 
 @Component({
   selector: 'app-customers-details',
@@ -21,7 +22,8 @@ export class CustomersDetailsComponent implements OnInit {
     private modalService: NgbModal,
     private customerService: CustomerApiService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private utils: ValidateError,
   ) { }
 
   navigateToTable() {
@@ -36,7 +38,7 @@ export class CustomersDetailsComponent implements OnInit {
         this.toastService.showSuccess(res.body.msg);
         this.navigateToTable();
       }, (err: HttpErrorResponse) => {
-        this.toastService.showDanger(err.error[0].msg);
+        this.utils.validateError(err)
       })
     })
   }

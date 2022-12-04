@@ -6,6 +6,7 @@ import { Event } from 'src/app/classes/events/event';
 import { DeleteModalComponent } from 'src/app/components/modals/delete-modal/delete-modal.component';
 import { EventApiService } from 'src/app/services/events/event-api.service';
 import { ToastsService } from 'src/app/services/toasts/toasts.service';
+import { ValidateError } from 'src/app/utils/validate-error';
 
 @Component({
   selector: 'app-events-details',
@@ -22,7 +23,8 @@ export class EventsDetailsComponent implements OnInit {
     private modalService: NgbModal,
     private eventService: EventApiService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private utils: ValidateError
   ) { }
   navigateToTable() {
     return this.router.navigate(['/events']);
@@ -36,7 +38,7 @@ export class EventsDetailsComponent implements OnInit {
         this.toastService.showSuccess(res.body.msg);
         this.navigateToTable();
       }, (err: HttpErrorResponse) => {
-        this.toastService.showDanger(err.error[0].msg);
+        this.utils.validateError(err);
       })
     })
   }

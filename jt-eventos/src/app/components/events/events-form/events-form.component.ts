@@ -6,6 +6,7 @@ import { Event } from 'src/app/classes/events/event';
 import { EventApiService } from 'src/app/services/events/event-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ValidateError } from 'src/app/utils/validate-error';
 
 @Component({
   selector: 'app-events-form',
@@ -22,7 +23,8 @@ export class EventsFormComponent implements OnInit {
     private modalService: NgbModal,
     private eventService: EventApiService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private utils: ValidateError
   ) { }
 
   navigateToTable() {
@@ -42,22 +44,14 @@ export class EventsFormComponent implements OnInit {
         this.toastService.showSuccess(res.body.msg);
         this.navigateToTable();
       }, (err: HttpErrorResponse) => {
-        if (err.status === 400) {
-          this.toastService.showDanger(err.error.msg);
-        } else if (err.status === 404) {
-          this.toastService.showDanger(err.error[0].msg);
-        }
+        this.utils.validateError(err);
       });
     } else {
       this.eventService.updateEvent(this.id, this.event).subscribe((res) => {
         this.toastService.showSuccess(res.body.msg);
         this.navigateToTable();
       }, (err: HttpErrorResponse) => {
-        if (err.status === 400) {
-          this.toastService.showDanger(err.error.msg);
-        } else if (err.status === 404) {
-          this.toastService.showDanger(err.error[0].msg);
-        }
+        this.utils.validateError(err);
       });
     }
   }

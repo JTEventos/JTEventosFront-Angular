@@ -6,6 +6,7 @@ import { Establishment } from 'src/app/classes/establishments/establishment';
 import { DeleteModalComponent } from 'src/app/components/modals/delete-modal/delete-modal.component';
 import { EstablishmentApiService } from 'src/app/services/establishments/establishment-api.service';
 import { ToastsService } from 'src/app/services/toasts/toasts.service';
+import { ValidateError } from 'src/app/utils/validate-error';
 import { EstablishmentsFormComponent } from '../establishments-form/establishments-form.component';
 
 @Component({
@@ -22,7 +23,8 @@ export class EstablishmentsDetailsComponent implements OnInit {
     private modalService: NgbModal,
     private establishmentService: EstablishmentApiService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private utils: ValidateError
   ) { }
 
   navigateToTable() {
@@ -37,7 +39,7 @@ export class EstablishmentsDetailsComponent implements OnInit {
         this.toastService.showSuccess(res.body.msg);
         this.navigateToTable();
       }, (err: HttpErrorResponse) => {
-        this.toastService.showDanger(err.error[0].msg);
+        this.utils.validateError(err);
       })
     })
   }

@@ -4,7 +4,7 @@ export class Establishment {
   cep: string = '';
   street: string = '';
   streetNumber: string = '';
-  streetComplement!: string;
+  streetComplement: string = '';
   neighborhood: string = '';
   city: string = '';
   state: string = '';

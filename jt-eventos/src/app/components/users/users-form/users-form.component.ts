@@ -6,6 +6,7 @@ import { UserApiService } from 'src/app/services/users/user-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/classes/users/user';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ValidateError } from 'src/app/utils/validate-error';
 
 @Component({
   selector: 'app-users-form',
@@ -22,7 +23,8 @@ export class UsersFormComponent implements OnInit {
     private modalService: NgbModal,
     private userService: UserApiService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private utils: ValidateError,
   ) { }
 
   navigateToTable() {
@@ -42,22 +44,14 @@ export class UsersFormComponent implements OnInit {
         this.toastService.showSuccess(res.body.msg);
         this.navigateToTable();
       }, (err: HttpErrorResponse) => {
-        if (err.status === 400 || err.status === 401) {
-          this.toastService.showDanger(err.error.msg);
-        } else if (err.status === 404) {
-          this.toastService.showDanger(err.error[0].msg);
-        }
+        this.utils.validateError(err);
       });
     } else {
       this.userService.updateUser(this.id, this.user).subscribe((res) => {
         this.toastService.showSuccess(res.body.msg);
         this.navigateToTable();
       }, (err: HttpErrorResponse) => {
-        if (err.status === 400 || err.status === 401) {
-          this.toastService.showDanger(err.error.msg);
-        } else if (err.status === 404) {
-          this.toastService.showDanger(err.error[0].msg);
-        }
+        this.utils.validateError(err);
       });
     }
   }

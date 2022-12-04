@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EventTypeApiService } from 'src/app/services/event-types/event-type-api.service';
 import { EventType } from 'src/app/classes/event-types/event-type';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ValidateError } from 'src/app/utils/validate-error';
 
 @Component({
   selector: 'app-event-types-form',
@@ -22,7 +23,8 @@ export class EventTypesFormComponent implements OnInit {
     private modalService: NgbModal,
     private eventTypeService: EventTypeApiService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private utils: ValidateError
   ) { }
 
   navigateToTable() {
@@ -42,14 +44,14 @@ export class EventTypesFormComponent implements OnInit {
         this.toastService.showSuccess(res.body.msg);
         this.navigateToTable();
       }, (err: HttpErrorResponse) => {
-        this.toastService.showDanger(err.error[0].msg);
+        this.utils.validateError(err);
       });
     } else {
       this.eventTypeService.updateEventType(this.id, this.eventType).subscribe((res) => {
         this.toastService.showSuccess(res.body.msg);
         this.navigateToTable();
       }, (err: HttpErrorResponse) => {
-        this.toastService.showDanger(err.error[0].msg);
+        this.utils.validateError(err);
       });
     }
   }

@@ -5,11 +5,11 @@ export class Customer {
   cep: string = '';
   street: string = '';
   streetNumber: string = '';
-  streetComplement!: string;
+  streetComplement: string = '';
   neighborhood: string = '';
   city: string = '';
   state: string = '';
   email: string = '';
   mobileNumber: string = '';
-  phoneNumber!: string;
+  phoneNumber: string = '';
 }

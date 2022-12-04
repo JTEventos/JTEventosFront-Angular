@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EstablishmentApiService } from 'src/app/services/establishments/establishment-api.service';
 import { Establishment } from 'src/app/classes/establishments/establishment';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ValidateError } from 'src/app/utils/validate-error';
 
 @Component({
   selector: 'app-establishments-form',
@@ -22,7 +23,8 @@ export class EstablishmentsFormComponent implements OnInit {
     private modalService: NgbModal,
     private establishmentService: EstablishmentApiService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private utils: ValidateError
   ) {}
 
   navigateToTable() {
@@ -42,14 +44,14 @@ export class EstablishmentsFormComponent implements OnInit {
         this.toastService.showSuccess(res.body.msg);
         this.navigateToTable();
       }, (err: HttpErrorResponse) => {
-        this.toastService.showDanger(err.error[0].msg);
+        this.utils.validateError(err);
       });
     } else {
       this.establishmentService.updateEstablishment(this.id, this.establishment).subscribe((res) => {
         this.toastService.showSuccess(res.body.msg);
         this.navigateToTable();
       }, (err: HttpErrorResponse) => {
-        this.toastService.showDanger(err.error[0].msg);
+        this.utils.validateError(err);
       });
     }
   }
