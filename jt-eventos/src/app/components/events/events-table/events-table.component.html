@@ -34,9 +34,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let event of list | eventLookup: searchField">
-        <td><ngb-highlight [result]="event.eventTypeId.toString()" [term]="searchField"></ngb-highlight></td>
-        <td><ngb-highlight [result]="event.customerId.toString()" [term]="searchField"></ngb-highlight></td>
-        <td><ngb-highlight [result]="event.establishmentId.toString()" [term]="searchField"></ngb-highlight></td>
+        <td><ngb-highlight [result]="event.eventTypeId[0].description" [term]="searchField"></ngb-highlight></td>
+        <td><ngb-highlight [result]="event.customerId[0].name" [term]="searchField"></ngb-highlight></td>
+        <td><ngb-highlight [result]="event.establishmentId[0].description" [term]="searchField"></ngb-highlight></td>
         <td><ngb-highlight [result]="event.startDate | date: 'dd/MM/yyyy'" [term]="searchField"></ngb-highlight></td>
         <td><ngb-highlight [result]="event.finishDate | date: 'dd/MM/yyyy'" [term]="searchField"></ngb-highlight></td>
         <td>

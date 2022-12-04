@@ -16,7 +16,7 @@ import { ValidateError } from 'src/app/utils/validate-error';
 export class EventsDetailsComponent implements OnInit {
   id!: number;
   event = new Event();
-  list: Event[] = []
+  list: Array<Event> = [];
 
   constructor(
     private toastService: ToastsService,
@@ -26,6 +26,7 @@ export class EventsDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private utils: ValidateError
   ) { }
+
   navigateToTable() {
     return this.router.navigate(['/events']);
   }
@@ -43,15 +44,12 @@ export class EventsDetailsComponent implements OnInit {
     })
   }
 
-  splitInviteList() {
-    return this.event.inviteList.split(', ').toString();
-  }
-
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     if (this.id) {
-      this.eventService.findById(this.id).subscribe((data) => {
-        this.event = data;
+      this.eventService.findById(this.id).subscribe((data: any) => {
+        this.event = data[0];
+        this.list.push(this.event);
       });
     }
   }

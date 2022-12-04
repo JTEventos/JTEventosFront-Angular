@@ -1,8 +1,12 @@
+import { Customer } from "../customers/customer";
+import { Establishment } from "../establishments/establishment";
+import { EventType } from "../event-types/event-type";
+
 export class Event {
   _id!: number;
-  eventTypeId: number = 0;
-  customerId: number = 0;
-  establishmentId: number = 0;
+  eventTypeId: Array<EventType> = [];
+  customerId: Array<Customer> = [];
+  establishmentId: Array<Establishment> = [];
   description: string = '';
   startDate: Date = new Date();
   finishDate: Date = new Date();

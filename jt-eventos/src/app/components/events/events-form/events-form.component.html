@@ -29,18 +29,21 @@
         <strong><label for="EventTypeId" class="control-label">Tipo de Evento</label></strong>
         <select id="EventTypeId" [(ngModel)]="event.eventTypeId" [ngModelOptions]="{standalone: true}" class="form-select">
           <option selected disabled>Selecione</option>
+          <option *ngFor="let eventType of listEventType" [ngValue]="eventType._id">{{ eventType.description }}</option>
         </select>
       </div>
       <div class="form-group">
         <strong><label for="CustomerId" class="control-label">Cliente</label></strong>
         <select id="CustomerId" [(ngModel)]="event.customerId" [ngModelOptions]="{standalone: true}" class="form-select">
           <option selected disabled>Selecione</option>
+          <option *ngFor="let customer of listCustomer" [ngValue]="customer._id">{{ customer.name }}</option>
         </select>
       </div>
       <div class="form-group">
         <strong><label for="EstablishmentId" class="control-label">Estabelecimento</label></strong>
         <select id="EstablishmentId" [(ngModel)]="event.establishmentId" [ngModelOptions]="{standalone: true}" class="form-select">
           <option selected disabled>Selecione</option>
+          <option *ngFor="let establishment of listEstablishment" [ngValue]="establishment._id">{{ establishment.description }}</option>
         </select>
       </div>
       <div class="form-group">

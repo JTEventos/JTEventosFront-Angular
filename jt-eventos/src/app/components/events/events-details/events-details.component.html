@@ -41,7 +41,7 @@
 
 <hr />
 
-<div class="row">
+<div class="row" *ngFor="let event of list">
   <div class="col-md-5 g-1 mx-auto">
     <div class="row no-gutters">
       <div class="col-4">
@@ -55,11 +55,11 @@
       </div>
 
       <div class="col-8">
-        <p>{{ event.eventTypeId }}</p>
-        <p>{{ event.customerId }}</p>
-        <p>{{ event.establishmentId }}</p>
+        <p *ngFor="let eventType of event.eventTypeId">{{ eventType.description }}</p>
+        <p *ngFor="let customer of event.customerId">{{ customer.name }}</p>
+        <p *ngFor="let establishment of event.establishmentId">{{ establishment.description }}</p>
         <p>{{ event.description }}</p>
-        <p>{{ event.startDate }} à {{ event.finishDate }}</p>
+        <p>{{ event.startDate | date: 'dd/MM/yyyy' }} à {{ event.finishDate | date: 'dd/MM/yyyy' }}</p>
       </div>
     </div>
 
@@ -68,8 +68,8 @@
     <div class="form-group">
       <strong><label class="control-label">Lista de convidados:</label></strong>
       <br>
-      <ul *ngFor="let invitees in splitInviteList()">
-        <li><label class="control-label">{{ invitees }}</label></li>
+      <ul>
+        <li *ngFor="let invitees of event.inviteList.split(', ')"><label class="control-label">{{ invitees }}</label></li>
       </ul>
     </div>
   </div>
@@ -100,8 +100,8 @@
     </div>
 
     <div class="col-9">
-      <p class="report">{{ event.eventTypeId }}</p>
-      <p class="report">{{ event.startDate }} à {{ event.finishDate }}</p>
+      <p class="report" *ngFor="let eventType of event.eventTypeId">{{ eventType.description }}</p>
+      <p class="report">{{ event.startDate | date: 'dd/MM/yyyy' }} à {{ event.finishDate | date: 'dd/MM/yyyy' }}</p>
     </div>
   </div>
 
@@ -113,9 +113,9 @@
     </div>
 
     <div class="col-9">
-      <p class="report">{{ event.customerId }}</p>
-      <p class="report">5133333333 | 51999999999</p>
-      <p class="report">Rua A, 123, Casa 2, Ingleses - Florianópolis/SC, CEP: 11000000</p>
+      <p class="report" *ngFor="let customer of event.customerId">{{ customer.name }}</p>
+      <p class="report" *ngFor="let customer of event.customerId">{{ customer.phoneNumber }} | {{ customer.mobileNumber }}</p>
+      <p class="report" *ngFor="let customer of event.customerId">{{ customer.street }}, {{ customer.streetNumber }}, {{ customer.streetComplement }}, {{ customer.neighborhood }} - {{ customer.city }}/{{ customer.state }}, CEP: {{ customer.cep }}</p>
     </div>
   </div>
 
@@ -126,16 +126,16 @@
     </div>
 
     <div class="col-9">
-      <p class="report">{{ event.establishmentId }}</p>
-      <p class="report">Avenida B, 321, Segundo andar, Canasvieiras - Florianópolis/SC, CEP: 12000000</p>
+      <p class="report" *ngFor="let establishment of event.establishmentId">{{ establishment.description }}</p>
+      <p class="report" *ngFor="let establishment of event.establishmentId">{{ establishment.street }}, {{ establishment.streetNumber }}, {{ establishment.streetComplement }}, {{ establishment.neighborhood }} - {{ establishment.city }}/{{ establishment.state }}, CEP: {{ establishment.cep }}</p>
     </div>
   </div>
 
   <div class="row no-gutters items-group">
     <div class="col">
       <p class="report label">Lista de convidados:</p>
-      <ul class="disclaimer" *ngFor="let invitees in splitInviteList()">
-        <li class="report">{{ invitees }}</li>
+      <ul class="disclaimer">
+        <li class="report" *ngFor="let invitees of event.inviteList.split(', ')">{{ invitees }}</li>
       </ul>
     </div>
   </div>
