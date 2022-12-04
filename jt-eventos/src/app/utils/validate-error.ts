@@ -10,7 +10,7 @@ export class ValidateError {
 
   validateError(err: any) {
     if (err.error.length > 0) {
-      for(let errorMessage of err.error ) {
+      for (let errorMessage of err.error ) {
         this.toastService.showDanger(errorMessage.msg);
       }
     } else {
