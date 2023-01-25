@@ -11,6 +11,9 @@
 
 JT Eventos - Uma aplicação que permite que usuários/empresas gerenciem o aluguel de seus estabelecimentos para realização de eventos.
 
+## Back-end:
+https://github.com/JTEventos/JTEventosBack-JavaScript
+
 # Pré-requisitos
 - Instalar [Node.js](https://nodejs.org/en/)
 
